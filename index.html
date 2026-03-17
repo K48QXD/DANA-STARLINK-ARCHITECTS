@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANA STARLINK ARCHITECTS - Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</title>
+    <!-- Tích hợp Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #F8F6F2;
+            --navy-dark: #1A2F4D;
+            --gold-accent: #C6A43F;
+            --text-content: #333333;
+            --card-bg: #FFFFFF;
+            --border-light: #E0DCD4;
+        }
+
+        body {
+            /* Cập nhật font chữ sang Arial */
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--bg-body);
+            color: var(--text-content);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ---------------- HEADER ---------------- */
+        .header {
+            min-height: 650px;
+            background-color: var(--navy-dark);
+            background-image: linear-gradient(rgba(26, 47, 77, 0.9), rgba(26, 47, 77, 0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 80px 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .brand-wrapper {
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-size: 3rem;
+            color: var(--gold-accent);
+            font-weight: bold;
+            letter-spacing: 4px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1;
+        }
+
+        .brand-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--gold-accent);
+            margin: 15px 0;
+        }
+
+        .brand-slogan {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        .iframe-container {
+            width: 100%;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border: 4px solid rgba(255,255,255,0.1);
+            height: 450px;
+            margin-top: 20px;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ---------------- CONTENT ---------------- */
+        .container {
+            max-width: 1100px;
+            margin: -60px auto 60px;
+            padding: 0 20px;
+            flex: 1;
+            position: relative;
+            z-index: 3;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover { transform: translateY(-5px); }
+
+        .calc-section {
+            background: var(--card-bg);
+            border-radius: 4px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+            border: 1px solid var(--border-light);
+        }
+
+        .calc-header { text-align: center; margin-bottom: 35px; }
+
+        .calc-header h2 {
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            border: none;
+            justify-content: center;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-item label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--navy-dark);
+            font-size: 0.95rem;
+        }
+
+        .option-box {
+            background: #FDFDFD;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #EDEDED;
+            margin-bottom: 15px;
+        }
+
+        .input-item input[type="text"],
+        .input-item input[type="tel"],
+        .input-item input[type="email"],
+        .input-item input[type="number"], 
+        .input-item select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #FFF;
+            font-family: Arial, sans-serif;
+        }
+
+        .checkbox-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .checkbox-options label {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            gap: 8px;
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-content);
+        }
+
+        .display-results-wrapper {
+            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .display-area-box {
+            padding: 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+            background: #F9F9F9;
+            border: 1px solid var(--border-light);
+            color: var(--navy-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .density-box { background: #F4F7F9; border-color: #D1DDE5; }
+
+        .display-area-box small {
+            display: block;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 6px;
+            font-weight: normal;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .result-table th, .result-table td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .result-table th {
+            background: #FAFAFA;
+            color: var(--navy-dark);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .chk-col { width: 50px; text-align: center !important; }
+        .chk-col input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--gold-accent);
+        }
+
+        .price-val {
+            font-weight: bold;
+            color: var(--gold-accent);
+            text-align: right;
+        }
+
+        .total-row {
+            background: var(--navy-dark);
+            color: #FFFFFF !important;
+            font-weight: bold;
+        }
+        
+        .total-row td { border: none; padding: 25px 16px; }
+        .total-row .price-val { 
+            color: var(--gold-accent); 
+            font-size: 1.6rem; 
+        }
+
+        .text-price-row {
+            background: #fdfdfd;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .text-price-row td {
+            padding: 10px 16px 20px;
+            font-style: italic;
+            color: #666;
+            text-align: right;
+            font-size: 0.95rem;
+        }
+
+        .submit-section {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .btn-submit {
+            background-color: var(--gold-accent);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(198, 164, 63, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn-submit:hover {
+            background-color: #b59335;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(198, 164, 63, 0.4);
+        }
+
+        h2 {
+            color: var(--navy-dark);
+            font-size: 1.3rem;
+            margin-top: 0;
+            border-bottom: 2px solid var(--gold-accent);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+        }
+
+        h2 i { color: var(--gold-accent); }
+
+        ul { padding-left: 20px; margin: 0; }
+        li { margin-bottom: 10px; font-weight: normal; color: var(--text-content); }
+        p { margin: 15px 0 0 0; font-weight: normal; color: var(--text-content); }
+
+        .bottom-contact {
+            background-color: var(--navy-dark); 
+            color: #FFFFFF;         
+            padding: 60px 15px;
+            text-align: center;
+        }
+
+        .footer-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .qr-container {
+            background: #fff;
+            padding: 12px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: inline-block;
+        }
+
+        .qr-container img {
+            width: 150px;
+            height: auto;
+            display: block;
+        }
+
+        .contact-info { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            margin-bottom: 10px;
+            color: var(--gold-accent);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .email-info { 
+            font-size: 1.1rem; 
+            opacity: 0.8;
+            font-weight: normal;
+        }
+
+        /* ---------------- WEATHER WIDGET STYLE ---------------- */
+        .weather-widget {
+            padding: 40px 20px;
+            background: #fff;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            color: #333;
+        }
+        .weather-widget h2 {
+            justify-content: center;
+            border: none;
+            margin-bottom: 10px;
+        }
+        .weather-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .weather-card {
+            background: #F8F6F2;
+            padding: 15px;
+            border-radius: 12px;
+            width: 170px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-light);
+        }
+        .weather-card h4 { margin: 5px 0; color: var(--navy-dark); }
+        .weather-card img { width: 60px; }
+        .weather-small { font-size: 13px; color: #555; margin: 3px 0; }
+
+        @media (max-width: 768px) {
+            .header { min-height: 500px; padding: 50px 0; }
+            .brand-name { font-size: 1.8rem; letter-spacing: 2px; }
+            .brand-slogan { font-size: 0.95rem; }
+            .iframe-container { height: 350px; }
+            .container { margin-top: -40px; }
+            .input-group { grid-template-columns: 1fr; }
+            .display-results-wrapper { grid-template-columns: 1fr; }
+            .contact-info { font-size: 1.4rem; }
+            .result-table { font-size: 0.85rem; }
+            .calc-section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-content">
+        <div class="brand-wrapper">
+            <h1 class="brand-name">DANA STARLINK ARCHITECTS</h1>
+            <div class="brand-divider"></div>
+            <div class="brand-slogan">Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</div>
+        </div>
+        
+        <div class="iframe-container">
+            <iframe src="https://docs.google.com/document/d/e/2PACX-1vRCem-Vno9NUkejy1PmAj-OAuWMKpRE0QQp58QXf7h4PUaXYPThGNlM3mp50AtvqRrWORKgRI09Em11/pub?embedded=true"></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="calc-section">
+        <div class="calc-header">
+            <h2><i class="fa-solid fa-calculator"></i> BẢNG GIÁ DỊCH VỤ & THÔNG TIN</h2>
+            <p style="margin:0; color: #777; font-size: 0.95rem;">(Vui lòng điền thông tin để xem báo giá chi tiết)</p>
+        </div>
+
+        <!-- Thông tin khách hàng -->
+        <h2 style="font-size: 1.1rem; border-color: #eee; margin-bottom: 20px;"><i class="fa-solid fa-user-tag"></i> THÔNG TIN KHÁCH HÀNG</h2>
+        <div class="input-group" style="margin-bottom: 40px;">
+            <div class="input-item">
+                <label>Tên khách hàng:</label>
+                <input type="text" id="cust-name" placeholder="Nhập họ và tên...">
+            </div>
+            <div class="input-group" style="margin-bottom: 0; gap: 15px;">
+                <div class="input-item">
+                    <label>Số di động:</label>
+                    <input type="tel" id="cust-phone" placeholder="0xxx...">
+                </div>
+                <div class="input-item">
+                    <label>Email:</label>
+                    <input type="email" id="cust-email" placeholder="example@gmail.com">
+                </div>
+            </div>
+        </div>
+
+        <!-- Thông tin lô đất -->
+        <h2 style="font-size: 1.1rem; border-color: #eee; margin-bottom: 20px;"><i class="fa-solid fa-house-chimney"></i> QUY MÔ XÂY DỰNG</h2>
+        <div class="input-group">
+            <div class="input-item">
+                <label>Diện tích lô đất thực tế (m²):</label>
+                <div class="option-box">
+                    <input type="number" id="lot-area" value="100" min="1" oninput="calculatePrice()">
+                </div>
+                
+                <div class="input-group" style="margin-bottom: 15px; gap: 15px;">
+                    <div class="input-item">
+                        <label>Thửa đất số:</label>
+                        <input type="text" id="plot-number" placeholder="...">
+                    </div>
+                    <div class="input-item">
+                        <label>Tờ bản đồ số:</label>
+                        <input type="text" id="map-number" placeholder="...">
+                    </div>
+                </div>
+
+                <label>Xã / Phường xây dựng:</label>
+                <div class="option-box">
+                    <select id="select-ward" onchange="calculatePrice()">
+                        <option value="Hải Châu">Phường Hải Châu</option>
+                        <option value="Hòa Cường">Phường Hòa Cường</option>
+                        <option value="Thanh Khê">Phường Thanh Khê</option>
+                        <option value="An Khê">Phường An Khê</option>
+                        <option value="An Hải">Phường An Hải</option>
+                        <option value="Sơn Trà">Phường Sơn Trà</option>
+                        <option value="Ngũ Hành Sơn">Phường Ngũ Hành Sơn</option>
+                        <option value="Hòa Khánh">Phường Hòa Khánh</option>
+                        <option value="Liên Chiểu">Phường Liên Chiểu</option>
+                        <option value="Hải Vân">Phường Hải Vân</option>
+                        <option value="Cẩm Lệ">Phường Cẩm Lệ</option>
+                        <option value="Hòa Xuân">Phường Hòa Xuân</option>
+                        <option value="Tam Kỳ">Phường Tam Kỳ</option>
+                        <option value="Quảng Phú">Phường Quảng Phú</option>
+                        <option value="Hương Trà">Phường Hương Trà</option>
+                        <option value="Bàn Thạch">Phường Bàn Thạch</option>
+                        <option value="Điện Bàn Đông">Phường Điện Bàn Đông</option>
+                        <option value="Điện Bàn">Phường Điện Bàn</option>
+                        <option value="Điện Bàn Bắc">Phường Điện Bàn Bắc</option>
+                        <option value="Hội An">Phường Hội An</option>
+                        <option value="Hội An Đông">Phường Hội An Đông</option>
+                        <option value="Hội An Tây">Phường Hội An Tây</option>
+                        <option value="An Thắng">Phường An Thắng</option>
+                        <option value="Hòa Vang">Xã Hòa Vang</option>
+                        <option value="Hòa Tiến">Xã Hòa Tiến</option>
+                        <option value="Bà Nà">Xã Bà Nà</option>
+                        <option value="Khác">Xã/phường #</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-item">
+                <label>Quy mô tầng & Vị trí:</label>
+                <div class="option-box">
+                    <select id="floors" onchange="calculatePrice()" style="margin-bottom: 15px;">
+                        <option value="1">1 tầng</option>
+                        <option value="1.5">1.5 tầng</option>
+                        <option value="2" selected>2 tầng</option>
+                        <option value="2.5">2.5 tầng</option>
+                        <option value="3">3 tầng</option>
+                        <option value="3.5">3.5 tầng</option>
+                        <option value="4">4 tầng</option>
+                        <option value="4.5">4.5 tầng</option>
+                        <option value="5">5 tầng</option>
+                        <option value="5.5">5.5 tầng</option>
+                        <option value="6">6 tầng</option>
+                    </select>
+                    <div class="checkbox-options">
+                        <label><input type="radio" name="location-type" id="chk-duong" checked onchange="calculatePrice()"> Đường chính</label>
+                        <label><input type="radio" name="location-type" id="chk-kiet" onchange="calculatePrice()"> Kiệt hẻm</label>
+                        <label><input type="checkbox" id="chk-3d" onchange="calculatePrice()"> Có phối cảnh 3D</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="display-results-wrapper">
+            <div id="density-result" class="display-area-box density-box">
+                Mật độ xây dựng: 0%
+                <small id="max-ground-area">Diện tích sàn T1 tối đa: 0 m²</small>
+            </div>
+            <div id="build-area-result" class="display-area-box">
+                Tổng diện tích sàn XD: 0 m²
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th class="chk-col"></th>
+                        <th>Hạng mục dịch vụ</th>
+                        <th style="text-align: right;">Đơn giá dự tính</th>
+                    </tr>
+                </thead>
+                <tbody id="price-body"></tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="2" style="text-align: right; text-transform: uppercase;">Tổng chi phí dự tính:</td>
+                        <td id="total-price" class="price-val">0 đ</td>
+                    </tr>
+                    <tr class="text-price-row">
+                        <td colspan="3" id="total-text-price">Bằng chữ: Không đồng.</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="submit-section">
+            <button class="btn-submit" onclick="submitToGoogleForm()">
+                <i class="fa-solid fa-paper-plane"></i> GỬI YÊU CẦU
+            </button>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Thông tin sẽ được gửi trực tiếp đến bộ phận tư vấn của Dana Starlink.</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2><i class="fa-solid fa-compass-drafting"></i> 1. Hồ sơ thiết kế kỹ thuật</h2>
+            <ul>
+                <li>Bản vẽ Kiến trúc & Kết cấu chi tiết;</li>
+                <li>Hệ thống Điện, Cấp thoát nước;</li>
+                <li>Hệ thống Mạng, Điều hòa, Camera;</li>
+                <li>Phối cảnh 3D ngoại thất (tùy chọn).</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2><i class="fa-solid fa-file-contract"></i> 2. Xin phép xây dựng trọn gói</h2>
+            <p>Lập hồ sơ xin giấy phép xây dựng đúng quy chuẩn, hỗ trợ pháp lý trọn gói tại địa phương đã chọn.</p>
+        </div>
+        <div class="card">
+            <h2><i class="fa-solid fa-trowel-bricks"></i> 3. Xây dựng trọn gói</h2>
+            <p>Thi công phần thô và hoàn thiện chuyên nghiệp (Chìa khóa trao tay). Đảm bảo chất lượng vật tư đúng cam kết.</p>
+        </div>
+        <div class="card">
+            <h2><i class="fa-solid fa-map-marked-alt"></i> 4. Xác minh quy hoạch</h2>
+            <p>Lập hồ sơ xin xác minh thông tin quy hoạch, lộ giới, chức năng sử dụng đất chính xác.</p>
+        </div>
+        <div class="card">
+            <h2><i class="fa-solid fa-laptop-code"></i> 5. Phần mềm & Dự toán</h2>
+            <p>Đào tạo sử dụng phần mềm, lập dự toán xây dựng công trình (nhóm 5 học viên). Cung cấp phần mềm có bản quyền./.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Weather Section -->
+<div class="weather-widget">
+    <h2><i class="fa-solid fa-sun-cloud"></i> THỜI TIẾT ĐÀ NẴNG (5 NGÀY)</h2>
+    <p id="updateTime" class="weather-small"></p>
+    <div class="weather-container" id="weather-list"></div>
+</div>
+
+<div class="bottom-contact">
+    <div class="footer-flex">
+        <div class="qr-container">
+            <img src="qrcode-Jc.jpg" alt="Zalo QR Code">
+        </div>
+        <div>
+            <div class="contact-info">
+                <i class="fa-solid fa-phone"></i> 0368.618.718
+            </div>
+            <div class="email-info">Jacobthao.work@gmail.com</div>
+            <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">© DANA STARLINK ARCHITECTS - Dịch vụ Tư vấn Xây dựng Đà Nẵng</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let servicesData = [];
+    let currentTotal = 0;
+    let lastTotal = 0;
+
+    function formatMoney(num) {
+        return Math.round(num).toLocaleString('vi-VN') + " đ";
+    }
+
+    function animateNumber(elementId, start, end, duration) {
+        let obj = document.getElementById(elementId);
+        let range = end - start;
+        let startTime = new Date().getTime();
+        
+        function step() {
+            let now = new Date().getTime();
+            let progress = Math.min((now - startTime) / duration, 1);
+            let easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+            let value = Math.round(start + (easeProgress * range));
+            obj.innerText = formatMoney(value);
+            
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                obj.innerText = formatMoney(end);
+            }
+        }
+        requestAnimationFrame(step);
+    }
+
+    function numberToVietnameseText(number) {
+        if (number === 0) return "Không đồng";
+        const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+        const placeValues = ["", "nghìn", "triệu", "tỷ", "nghìn tỷ", "triệu tỷ"];
+        
+        function readThreeDigits(n, isFirstGroup) {
+            let res = "";
+            const hundred = Math.floor(n / 100);
+            const ten = Math.floor((n % 100) / 10);
+            const unit = n % 10;
+            if (hundred > 0 || !isFirstGroup) res += units[hundred] + " trăm ";
+            if (ten > 0) {
+                if (ten === 1) res += "mười ";
+                else res += units[ten] + " mươi ";
+            } else if (hundred > 0 && unit > 0) res += "lẻ ";
+            if (unit > 0) {
+                if (ten > 1 && unit === 1) res += "mốt";
+                else if (ten > 0 && unit === 5) res += "lăm";
+                else res += units[unit];
+            }
+            return res.trim();
+        }
+
+        let res = "";
+        let groupIdx = 0;
+        let tempNum = Math.abs(number);
+        while (tempNum > 0) {
+            const threeDigits = tempNum % 1000;
+            if (threeDigits > 0) {
+                const groupText = readThreeDigits(threeDigits, Math.floor(tempNum / 1000) === 0);
+                res = groupText + " " + placeValues[groupIdx] + " " + res;
+            }
+            tempNum = Math.floor(tempNum / 1000);
+            groupIdx++;
+        }
+        res = res.trim();
+        return res.charAt(0).toUpperCase() + res.slice(1) + " đồng";
+    }
+
+    function getDensity(area) {
+        const table = [
+            { x: 90, y: 100 }, { x: 100, y: 90 }, { x: 200, y: 70 },
+            { x: 300, y: 60 }, { x: 500, y: 50 }, { x: 1000, y: 40 }
+        ];
+        if (area <= table[0].x) return table[0].y;
+        if (area >= table[table.length - 1].x) return table[table.length - 1].y;
+        for (let i = 0; i < table.length - 1; i++) {
+            if (area >= table[i].x && area <= table[i+1].x) {
+                const x1 = table[i].x, y1 = table[i].y;
+                const x2 = table[i+1].x, y2 = table[i+1].y;
+                return y1 + (area - x1) * (y2 - y1) / (x2 - x1);
+            }
+        }
+        return 100;
+    }
+
+    let tableSelected = [0, 1, 4, 5]; 
+
+    function toggleTableService(index) {
+        if (tableSelected.includes(index)) {
+            tableSelected = tableSelected.filter(i => i !== index);
+        } else {
+            tableSelected.push(index);
+        }
+        calculatePrice();
+    }
+
+    function calculatePrice() {
+        const lotArea = parseFloat(document.getElementById('lot-area').value) || 0;
+        const floorCount = parseFloat(document.getElementById('floors').value);
+        const has3D = document.getElementById('chk-3d').checked;
+        const isKiet = document.getElementById('chk-kiet').checked;
+        const ward = document.getElementById('select-ward').value;
+
+        const density = getDensity(lotArea);
+        const maxGroundArea = (lotArea * density) / 100;
+        document.getElementById('density-result').innerHTML = `
+            Mật độ XD (${ward}): ${density.toFixed(1)}%
+            <small id="max-ground-area">Diện tích sàn T1 tối đa: ${maxGroundArea.toFixed(1)} m²</small>
+        `;
+
+        const buildArea = maxGroundArea * floorCount;
+        document.getElementById('build-area-result').innerHTML = `
+            Tổng diện tích sàn XD: ${buildArea.toFixed(1)} m²
+        `;
+
+        let xinPhepBase = 0;
+        if (floorCount <= 1) xinPhepBase = 1000000;
+        else if (floorCount <= 2) xinPhepBase = 2000000;
+        else if (floorCount <= 3) xinPhepBase = 3000000;
+        else if (floorCount <= 4) xinPhepBase = 4000000;
+        else xinPhepBase = 5000000;
+        const finalXinPhep = lotArea > 100 ? (xinPhepBase * 1.2) : xinPhepBase;
+
+        const designUnitPrice = has3D ? 200000 : 115000;
+        const finalDesignPrice = designUnitPrice * buildArea;
+
+        const constructionUnitPrice = isKiet ? 8500000 : 8000000;
+        const finalConstructionPrice = constructionUnitPrice * buildArea;
+
+        const finalEstimationPrice = 20000 * buildArea;
+
+        servicesData = [
+            { id: 'xp', name: "Lập hồ sơ xin phép xây dựng trọn gói", price: finalXinPhep },
+            { id: 'tk', name: "Hồ sơ thiết kế kỹ thuật nhà phố", price: finalDesignPrice },
+            { id: 'xd', name: `Thi công nhà phố trọn gói (${isKiet ? 'Trong kiệt' : 'Đường chính'})`, price: finalConstructionPrice },
+            { id: 'ksdc', name: "Khảo sát địa chất công trình", price: 50000000 },
+            { id: 'dt', name: "Lập dự toán chi tiết quản lý vật tư", price: finalEstimationPrice },
+            { id: 'qh', name: "Xác minh thông tin đất đai (Quy hoạch)", price: 500000 },
+            { id: 'pm', name: "Phần mềm & Đào tạo dự toán (Nhóm 5 học viên)", price: 1500000 }
+        ];
+
+        currentTotal = 0;
+        let html = "";
+        servicesData.forEach((s, index) => {
+            const isChecked = tableSelected.includes(index);
+            if (isChecked) currentTotal += s.price;
+            html += `
+                <tr style="background: ${isChecked ? '#FCFBF8' : 'transparent'}">
+                    <td class="chk-col"><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTableService(${index})"></td>
+                    <td><span style="font-weight: bold; color: var(--navy-dark)">${s.name}</span></td>
+                    <td class="price-val">${formatMoney(s.price)}</td>
+                </tr>
+            `;
+        });
+
+        document.getElementById('price-body').innerHTML = html;
+        animateNumber('total-price', lastTotal || 0, currentTotal, 600);
+        lastTotal = currentTotal; 
+        document.getElementById('total-text-price').innerText = "Bằng chữ: " + numberToVietnameseText(currentTotal) + ".";
+    }
+
+    function submitToGoogleForm() {
+        const name = document.getElementById('cust-name').value.trim();
+        const phone = document.getElementById('cust-phone').value.trim();
+        const email = document.getElementById('cust-email').value.trim();
+        const ward = document.getElementById('select-ward').value;
+        const lotArea = document.getElementById('lot-area').value;
+        const floors = document.getElementById('floors').value;
+        const totalPrice = document.getElementById('total-price').innerText;
+        const plotNumber = document.getElementById('plot-number').value.trim();
+        const mapNumber = document.getElementById('map-number').value.trim();
+
+        if (!name || !phone) {
+            alert("Vui lòng nhập Họ tên và Số điện thoại trước khi gửi yêu cầu.");
+            return;
+        }
+
+        const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLScP58un91tUZ19nPmmwVGRmKwJ2g40cqId-MHOM3pWYgVjBvA/viewform";
+        const params = new URLSearchParams({
+            "usp": "pp_url",
+            "entry.1804705596": name,
+            "entry.1203062325": phone,
+            "entry.1226593539": email,
+            "entry.1887258380": `Phường ${ward}, Thửa ${plotNumber}, Tờ ${mapNumber}`,
+            "entry.1118949503": `${lotArea} m2`,
+            "entry.2064030678": `${floors} tầng`,
+            "entry.1384752528": totalPrice
+        });
+
+        const finalUrl = `${baseUrl}?${params.toString()}`;
+        window.open(finalUrl, "_blank");
+    }
+
+    // --- Weather Logic ---
+    function loadWeather() {
+        const apiKey = "87b4d2fbdcbc6be1ea537d774a3375d8";
+        const city = "Da Nang";
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=vi`;
+
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById("weather-list");
+            container.innerHTML = "";
+            const daily = data.list.filter(item => item.dt_txt.includes("12:00:00"));
+
+            daily.slice(0, 5).forEach(day => {
+                const date = new Date(day.dt_txt).toLocaleDateString("vi-VN");
+                const temp = day.main.temp.toFixed(1);
+                const tempMin = day.main.temp_min.toFixed(1);
+                const tempMax = day.main.temp_max.toFixed(1);
+                const desc = day.weather[0].description;
+                const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+                const pop = Math.round(day.pop * 100);
+                const wind = day.wind.speed;
+
+                container.innerHTML += `
+                    <div class="weather-card">
+                        <h4>${date}</h4>
+                        <img src="${icon}" alt="${desc}">
+                        <p><b>${temp}°C</b></p>
+                        <p class="weather-small">⬇ ${tempMin}° | ⬆ ${tempMax}°</p>
+                        <p class="weather-small">${desc.charAt(0).toUpperCase() + desc.slice(1)}</p>
+                        <p class="weather-small">🌧️ Mưa: ${pop}%</p>
+                        <p class="weather-small">💨 Gió: ${wind} m/s</p>
+                    </div>
+                `;
+            });
+
+            const now = new Date();
+            document.getElementById("updateTime").innerText = "Cập nhật lúc: " + now.toLocaleTimeString("vi-VN");
+        })
+        .catch(err => console.error("Lỗi thời tiết:", err));
+    }
+
+    window.onload = function() {
+        calculatePrice();
+        loadWeather();
+        setInterval(loadWeather, 30 * 60 * 1000); // Auto refresh mỗi 30p
+    };
+</script>
+</body>
+</html>
