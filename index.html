@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ĐÀ NẴNG MỚI - DANA STARLINK ARCHITECTS & CỘNG SỰ - Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</title><link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png">
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png" type="image/x-icon">
+    <title>DANA STARLINK ARCHITECTS & CỘNG SỰ - Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</title>
+    
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png">
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png" type="image/x-icon">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -52,7 +56,7 @@
         }
 
         .brand-name {
-            font-size: 3rem; color: var(--gold-accent); font-weight: bold; letter-spacing: 4px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); line-height: 1;
+            font-size: 2.8rem; color: var(--gold-accent); font-weight: bold; letter-spacing: 4px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); line-height: 1.2;
         }
 
         .brand-divider {
@@ -190,7 +194,6 @@
         .lunar-good { color: #4ade80; }
         .lunar-bad { color: #f87171; }
 
-        /* Xem tuổi làm nhà specific styles - Đã sửa lỗi màu chữ tối */
         .age-check-box { text-align: center; padding: 20px; color: #ffffff; }
         .age-check-box input {
             padding: 12px; width: 80%; max-width: 300px; margin-bottom: 15px; border-radius: 8px; border: none; font-size: 1rem; color: #333; background: #fff;
@@ -241,7 +244,7 @@
 
         @media (max-width: 768px) {
             .header { min-height: 500px; padding: 50px 0; }
-            .brand-name { font-size: 1.8rem; letter-spacing: 2px; }
+            .brand-name { font-size: 1.6rem; letter-spacing: 2px; }
             .brand-slogan { font-size: 0.95rem; }
             .iframe-container { height: 350px; }
             .container { margin-top: -40px; }
@@ -258,7 +261,7 @@
 <div class="header">
     <div class="header-content">
         <div class="brand-wrapper">
-            <h1 class="brand-name">DANA STARLINK ARCHITECTS</h1>
+            <h1 class="brand-name">DANA STARLINK ARCHITECTS & CỘNG SỰ</h1>
             <div class="brand-divider"></div>
             <div class="brand-slogan">Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</div>
         </div>
@@ -378,7 +381,7 @@
             <button class="btn-submit" onclick="submitToGoogleForm()">
                 <i class="fa-solid fa-paper-plane"></i> GỬI YÊU CẦU
             </button>
-            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Thông tin quy mô sẽ được gửi trực tiếp đến bộ phận tư vấn của Dana Starlink.</p>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Thông tin quy mô sẽ được gửi trực tiếp đến bộ phận tư vấn của Dana Starlink & Cộng sự.</p>
         </div>
     </div>
 
@@ -433,7 +436,7 @@
         <div id="lunar-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;"></div>
     </div>
 
-    <!-- ===== PHẦN XEM TUỔI LÀM NHÀ 2026 CHÈN DƯỚI ÂM LỊCH ===== -->
+    <!-- ===== PHẦN XEM TUỔI LÀM NHÀ 2026 ===== -->
     <div class="lunar-card age-check-box">
         <h3>🏠 Xem tuổi làm nhà 2026</h3>
         <input type="number" id="year-birth" placeholder="Nhập năm sinh (VD: 1993)">
@@ -452,13 +455,12 @@
             <div class="contact-info">
                 <i class="fa-solid fa-phone"></i> 0368.618.718
             </div>
-            <div class="email-info">Email: info@danangmoi.vn</div>
-            <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">© DANA STARLINK ARCHITECTS - Dịch vụ Tư vấn Xây dựng Đà Nẵng</div>
+            <div class="email-info">info@danangmoi.vn</div>
+            <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">© DANA STARLINK ARCHITECTS & CỘNG SỰ - Dịch vụ Tư vấn Xây dựng Đà Nẵng</div>
         </div>
     </div>
 </div>
 
-<!-- THƯ VIỆN LUNAR -->
 <script src="https://cdn.jsdelivr.net/gh/6tail/lunar-javascript/lunar.js"></script>
 
 <script>
@@ -555,7 +557,6 @@ function renderLunarList(){
   if(listEl) listEl.innerHTML = html;
 }
 
-// ===== XEM TUỔI LÀM NHÀ 2026 =====
 function checkAgeHouse() {
     let year = document.getElementById("year-birth").value;
     if(!year) return;
@@ -584,10 +585,9 @@ function checkAgeHouse() {
     document.getElementById("age-house-result").innerHTML = result;
 }
 
-// ===== CÁC HÀM TÍNH TOÁN BÁO GIÁ DANA STARLINK =====
 let lastTotal = 0;
 let currentTotal = 0;
-let tableSelected = [0, 1, 4, 5]; 
+let tableSelected = [0, 1, 4, 5, 7]; // Mặc định chọn một số mục, KHÔNG chọn mục 6 (đào tạo)
 
 function formatMoney(num) { return Math.round(num).toLocaleString('vi-VN') + " đ"; }
 
@@ -654,8 +654,34 @@ function getDensity(area) {
 }
 
 function toggleTableService(index) {
-    if (tableSelected.includes(index)) tableSelected = tableSelected.filter(i => i !== index);
-    else tableSelected.push(index);
+    // Logic: Nếu tick mục 6 (Phần mềm & Đào tạo), bỏ hết mục khác. 
+    // Nếu tick mục khác, bỏ mục 6.
+    
+    if (index === 6) {
+        // Đang tick vào mục đào tạo
+        if (!tableSelected.includes(6)) {
+            tableSelected = [6]; // Chỉ giữ mục 6
+        } else {
+            tableSelected = []; // Bỏ chọn nếu đang chọn
+        }
+    } else {
+        // Đang tick vào một mục khác (không phải 6)
+        // Loại bỏ mục 6 nếu nó đang được chọn
+        tableSelected = tableSelected.filter(i => i !== 6);
+        
+        // Loại trừ tương hỗ Trọn gói (2) và Phần thô (7)
+        if (index === 2) {
+            tableSelected = tableSelected.filter(i => i !== 7);
+        } else if (index === 7) {
+            tableSelected = tableSelected.filter(i => i !== 2);
+        }
+
+        if (tableSelected.includes(index)) {
+            tableSelected = tableSelected.filter(i => i !== index);
+        } else {
+            tableSelected.push(index);
+        }
+    }
     calculatePrice();
 }
 
@@ -691,27 +717,35 @@ function calculatePrice() {
     const constructionUnitPrice = isKiet ? 8500000 : 8000000;
     const finalConstructionPrice = constructionUnitPrice * buildArea;
 
+    const constructionRoughUnitPrice = isKiet ? 4700000 : 4500000;
+    const finalConstructionRoughPrice = constructionRoughUnitPrice * buildArea;
+
     const finalEstimationPrice = 20000 * buildArea;
 
-    let servicesData = [
-        { name: "Lập hồ sơ xin phép xây dựng trọn gói", price: finalXinPhep },
-        { name: "Hồ sơ thiết kế kỹ thuật nhà phố", price: finalDesignPrice },
-        { name: `Thi công nhà phố trọn gói (${isKiet ? 'Trong kiệt' : 'Đường chính'})`, price: finalConstructionPrice },
-        { name: "Khảo sát địa chất công trình", price: 50000000 },
-        { name: "Lập dự toán chi tiết quản lý vật tư", price: finalEstimationPrice },
-        { name: "Xác minh thông tin đất đai (Quy hoạch)", price: 500000 },
-        { name: "Phần mềm & Đào tạo dự toán (Nhóm 5 học viên)", price: 1500000 }
-    ];
+    // Mapping để hiển thị theo thứ tự yêu cầu (7 trên 6)
+    const displayMapping = [0, 1, 2, 3, 4, 5, 7, 6];
 
     currentTotal = 0;
     let html = "";
-    servicesData.forEach((s, index) => {
-        const isChecked = tableSelected.includes(index);
-        if (isChecked) currentTotal += s.price;
+    
+    displayMapping.forEach((originalIdx) => {
+        let item;
+        if(originalIdx === 0) item = { name: "Lập hồ sơ xin phép xây dựng trọn gói", price: finalXinPhep };
+        else if(originalIdx === 1) item = { name: "Hồ sơ thiết kế kỹ thuật nhà phố", price: finalDesignPrice };
+        else if(originalIdx === 2) item = { name: `Thi công nhà phố trọn gói (${isKiet ? 'Trong kiệt' : 'Đường chính'})`, price: finalConstructionPrice };
+        else if(originalIdx === 3) item = { name: "Khảo sát địa chất công trình", price: 50000000 };
+        else if(originalIdx === 4) item = { name: "Lập dự toán chi tiết quản lý vật tư", price: finalEstimationPrice };
+        else if(originalIdx === 5) item = { name: "Xác minh thông tin đất đai (Quy hoạch)", price: 500000 };
+        else if(originalIdx === 7) item = { name: `Thi công nhà phố phần thô (${isKiet ? 'Trong kiệt' : 'Đường chính'})`, price: finalConstructionRoughPrice };
+        else if(originalIdx === 6) item = { name: "Phần mềm & Đào tạo dự toán (Nhóm 5 học viên)", price: 1500000 };
+
+        const isChecked = tableSelected.includes(originalIdx);
+        if (isChecked) currentTotal += item.price;
+        
         html += `<tr style="background: ${isChecked ? '#FCFBF8' : 'transparent'}">
-                <td class="chk-col"><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTableService(${index})"></td>
-                <td><span style="font-weight: bold; color: var(--navy-dark)">${s.name}</span></td>
-                <td class="price-val">${formatMoney(s.price)}</td></tr>`;
+                <td class="chk-col"><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleTableService(${originalIdx})"></td>
+                <td><span style="font-weight: bold; color: var(--navy-dark)">${item.name}</span></td>
+                <td class="price-val">${formatMoney(item.price)}</td></tr>`;
     });
 
     const priceBody = document.getElementById('price-body');
