@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DANA STARLINK ARCHITECTS & CỘNG SỰ - Dịch vụ tư vấn xây dựng nhà ở gia đình uy tín tại TP Đà Nẵng</title>
     
-    <!-- Favicon links -->
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png" type="image/x-icon">
 
@@ -179,7 +178,7 @@
         li { margin-bottom: 10px; font-weight: normal; color: var(--text-content); }
         p { margin: 15px 0 0 0; font-weight: normal; color: var(--text-content); }
 
-        /* Lịch Âm & Xem Tuổi Styles */
+        /* ===== LỊCH ÂM VIỆT NAM STYLES ===== */
         .lunar-container {
             max-width: 900px; margin: 40px auto; padding: 20px; background: #0f172a; color: #f8fafc; text-align: center; border-radius: 15px;
         }
@@ -188,11 +187,11 @@
             background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 15px; text-align: left; color: #f8fafc;
         }
         .lunar-card h3 { color: #38bdf8; margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px; font-size: 1.2rem; text-align: center; }
-        .lunar-tag {
-            display: inline-block; background: #334155; padding: 5px 10px; margin: 3px; border-radius: 8px; font-size: 0.9rem; color: #ffffff;
+        .tag {
+            display: inline-block; background: #334155; padding: 5px 10px; margin: 3px; border-radius: 8px; font-size: 0.85rem; color: #ffffff;
         }
-        .lunar-good { color: #4ade80; }
-        .lunar-bad { color: #f87171; }
+        .good { color: #4ade80; }
+        .bad { color: #f87171; }
 
         .age-check-box { text-align: center; padding: 20px; color: #ffffff; }
         .age-check-box input {
@@ -204,11 +203,6 @@
         .age-check-box button:hover { background: #d35400; }
         .age-result { text-align: left; margin-top: 20px; background: #334155; padding: 20px; border-radius: 8px; font-size: 1rem; color: #ffffff; line-height: 1.6; }
         .age-result b { color: #f8fafc; }
-        .age-result .good { color: #4ade80; font-weight: bold; }
-        .age-result .bad { color: #fca5a5; font-weight: bold; }
-        .age-result h3 { font-size: 1.3rem; margin: 15px 0 10px; color: #ffffff; }
-        .age-result ul { list-style: none; padding-left: 0; }
-        .age-result li { color: #cbd5e1; margin-bottom: 5px; }
 
         .bottom-contact {
             background-color: var(--navy-dark); color: #FFFFFF; padding: 60px 15px; text-align: center;
@@ -284,7 +278,7 @@
             <div class="input-item">
                 <label>Diện tích lô đất thực tế (m²):</label>
                 <div class="option-box">
-                    <input type="number" id="lot-area" value="100" min="1" oninput="calculatePrice()">
+                    <input type="number" id="lot-area" value="100" min="25" oninput="calculatePrice()">
                 </div>
 
                 <label>Xã / Phường xây dựng:</label>
@@ -381,7 +375,7 @@
             <button class="btn-submit" onclick="submitToGoogleForm()">
                 <i class="fa-solid fa-paper-plane"></i> GỬI YÊU CẦU
             </button>
-            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Thông tin quy mô sẽ được gửi trực tiếp đến bộ phận tư vấn của Dana Starlink & Cộng sự.</p>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 15px;">Thông tin quy mô sẽ được gửi trực tiếp đến bộ phận tư vấn của Dana Starlink.</p>
         </div>
     </div>
 
@@ -420,23 +414,22 @@
     <div class="weather-container" id="weather-list"></div>
 </div>
 
-<!-- ===== LỊCH ÂM & XEM TUỔI ===== -->
 <div class="lunar-container">
     <h2>📅 Lịch Âm Việt Nam</h2>
+
     <div class="lunar-card">
-        <div id="lunar-date" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 5px;"></div>
-        <div id="lunar-canchi" style="color: #94a3b8; margin-bottom: 10px;"></div>
-        <div id="lunar-gio" style="margin-bottom: 15px;"></div>
-        <div id="lunar-tot" style="margin-bottom: 8px;"></div>
-        <div id="lunar-xau"></div>
+        <div id="date" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 5px;"></div>
+        <div id="canchi" style="color: #94a3b8; margin-bottom: 10px;"></div>
+        <div id="gio" style="margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6;"></div>
+        <div id="tot" style="margin-bottom: 8px;"></div>
+        <div id="xau"></div>
     </div>
 
     <div class="lunar-card">
         <h3>🔥 Ngày tốt 60 ngày tới</h3>
-        <div id="lunar-list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;"></div>
+        <div id="list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;"></div>
     </div>
 
-    <!-- ===== PHẦN XEM TUỔI LÀM NHÀ 2026 ===== -->
     <div class="lunar-card age-check-box">
         <h3>🏠 Xem tuổi làm nhà 2026</h3>
         <input type="number" id="year-birth" placeholder="Nhập năm sinh (VD: 1993)">
@@ -455,7 +448,7 @@
             <div class="contact-info">
                 <i class="fa-solid fa-phone"></i> 0368.618.718
             </div>
-            <div class="email-info">info@danangmoi.vn</div>
+            <div class="email-info">Email: info@danangmoi.vn</div>
             <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">© DANA STARLINK ARCHITECTS & CỘNG SỰ - Dịch vụ Tư vấn Xây dựng Đà Nẵng</div>
         </div>
     </div>
@@ -464,13 +457,41 @@
 <script src="https://cdn.jsdelivr.net/gh/6tail/lunar-javascript/lunar.js"></script>
 
 <script>
+// ===== CHỈ GIỮ NỘI DUNG HỮU ÍCH =====
 const mapVN = {
-  "嫁娶":"Cưới hỏi", "动土":"Động thổ", "修造":"Xây dựng", "开市":"Khai trương", "入宅":"Nhập trạch",
-  "出行":"Xuất hành", "交易":"Giao dịch", "纳财":"Nhận tài lộc", "安床":"Đặt giường", "上梁":"Lợp mái"
+  "嫁娶":"Cưới hỏi",
+  "动土":"Động thổ",
+  "修造":"Xây dựng",
+  "开市":"Khai trương",
+  "入宅":"Nhập trạch",
+  "出行":"Xuất hành",
+  "交易":"Giao dịch",
+  "纳财":"Nhận tài lộc",
+  "安床":"Đặt giường",
+  "上梁":"Lợp mái"
 };
 
-function isChinese(t){ return /[\u4e00-\u9fa5]/.test(t); }
+const gioMapVN = {
+  "Tý": "23h - 01h",
+  "Sửu": "01h - 03h",
+  "Dần": "03h - 05h",
+  "Mão": "05h - 07h",
+  "Thìn": "07h - 09h",
+  "Tỵ": "09h - 11h",
+  "Ngọ": "11h - 13h",
+  "Mùi": "13h - 15h",
+  "Thân": "15h - 17h",
+  "Dậu": "17h - 19h",
+  "Tuất": "19h - 21h",
+  "Hợi": "21h - 23h"
+};
 
+// ===== LỌC CHỮ TRUNG =====
+function isChinese(t){
+  return /[\u4e00-\u9fa5]/.test(t);
+}
+
+// ===== DỊCH SẠCH =====
 function translate(arr){
   return arr.map(x=>{
     if(mapVN[x]) return mapVN[x];
@@ -479,84 +500,101 @@ function translate(arr){
   }).filter(x => x !== "");
 }
 
+// ===== CAN CHI =====
 const canMap = {"甲":"Giáp","乙":"Ất","丙":"Bính","丁":"Đinh","戊":"Mậu","己":"Kỷ","庚":"Canh","辛":"Tân","壬":"Nhâm","癸":"Quý"};
 const chiMap = {"子":"Tý","丑":"Sửu","寅":"Dần","卯":"Mão","辰":"Thìn","巳":"Tỵ","午":"Ngọ","未":"Mùi","申":"Thân","酉":"Dậu","戌":"Tuất","亥":"Hợi"};
 
-function toVN(gz){ return (canMap[gz[0]]||"")+" "+(chiMap[gz[1]]||""); }
+function toVN(gz){
+  return (canMap[gz[0]]||"")+" "+(chiMap[gz[1]]||"");
+}
 
+// ===== GIỜ HOÀNG ĐẠO =====
 function getGioHD(chi){
   const map = {
-    "Tý":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"], "Sửu":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
-    "Dần":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"], "Mão":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
-    "Thìn":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"], "Tỵ":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"],
-    "Ngọ":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"], "Mùi":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
-    "Thân":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"], "Dậu":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
-    "Tuất":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"], "Hợi":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"]
+    "Tý":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"],
+    "Sửu":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
+    "Dần":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"],
+    "Mão":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
+    "Thìn":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"],
+    "Tỵ":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"],
+    "Ngọ":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"],
+    "Mùi":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
+    "Thân":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"],
+    "Dậu":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
+    "Tuất":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"],
+    "Hợi":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"]
   };
   return map[chi] || [];
 }
 
-const trucList = ["Kiến","Trừ","Mãn","Bình","Định","Chấp","Phá","Nguy","Thành","Thu","Khai","Bế"];
-const goodTruc = ["Thành","Khai","Mãn","Định"];
-
-function renderLunarToday(){
+// ===== HIỂN THỊ NGÀY HIỆN TẠI =====
+function renderToday(){
   let now = new Date();
   let solar = Solar.fromDate(now);
   let lunar = solar.getLunar();
 
-  const dateEl = document.getElementById("lunar-date");
-  const canchiEl = document.getElementById("lunar-canchi");
-  const gioEl = document.getElementById("lunar-gio");
-  const totEl = document.getElementById("lunar-tot");
-  const xauEl = document.getElementById("lunar-xau");
-
+  const dateEl = document.getElementById("date");
   if(dateEl) dateEl.innerHTML = `📆 ${now.toLocaleDateString("vi-VN")} | 🌙 ${lunar.getDay()}/${lunar.getMonth()}/${lunar.getYear()}`;
 
   let canchi = toVN(lunar.getDayInGanZhi());
-  if(canchiEl) canchiEl.innerHTML = "🧭 " + canchi;
+  const canchiEl = document.getElementById("canchi");
+  if(canchiEl) canchiEl.innerHTML = "🧭 Ngày " + canchi;
 
   let chi = canchi.split(" ")[1];
-  if(gioEl) gioEl.innerHTML = "⏰ Giờ hoàng đạo: " + getGioHD(chi).join(", ");
+  const gioEl = document.getElementById("gio");
+  if(gioEl) {
+    let listGio = getGioHD(chi).map(g => `${g} (${gioMapVN[g]})`);
+    gioEl.innerHTML = "⏰ <b>Giờ hoàng đạo:</b><br>" + listGio.join(", ");
+  }
 
   let good = translate(lunar.getDayYi());
-  let bad = translate(lunar.getDayJi());
+  let bad  = translate(lunar.getDayJi());
 
-  if(totEl) totEl.innerHTML = "✅ Nên: " + good.map(x=>`<span class="lunar-tag">${x}</span>`).join("");
-  if(xauEl) xauEl.innerHTML = "❌ Tránh: " + bad.map(x=>`<span class="lunar-tag">${x}</span>`).join("");
+  const totEl = document.getElementById("tot");
+  if(totEl) totEl.innerHTML = "✅ Nên: " + good.map(x=>`<span class="tag">${x}</span>`).join("");
+
+  const xauEl = document.getElementById("xau");
+  if(xauEl) xauEl.innerHTML = "❌ Tránh: " + bad.map(x=>`<span class="tag">${x}</span>`).join("");
 }
 
+// ===== TRỰC =====
+const trucList = ["Kiến","Trừ","Mãn","Bình","Định","Chấp","Phá","Nguy","Thành","Thu","Khai","Bế"];
+const goodTruc = ["Thành","Khai","Mãn","Định"];
+
+// ===== NGÀY TỐT =====
 function isGoodDay(lunar, date){
   let truc = trucList[date.getDate()%12];
   let good = translate(lunar.getDayYi());
   return good.length >= 2 && goodTruc.includes(truc);
 }
 
-function renderLunarList(){
+// ===== DANH SÁCH 60 NGÀY =====
+function renderList(){
   let html = "";
   let today = new Date();
-  const listEl = document.getElementById("lunar-list");
 
   for(let i=0;i<60;i++){
     let d = new Date();
     d.setDate(today.getDate()+i);
     let solar = Solar.fromDate(d);
     let lunar = solar.getLunar();
+
     if(isGoodDay(lunar,d)){
       let good = translate(lunar.getDayYi()).slice(0,3);
       html += `
-        <div style="border-bottom:1px solid #334155;padding:8px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <b>${d.toLocaleDateString("vi-VN")}</b>
-            <span style="margin-left:10px; opacity:0.7">🌙 ${lunar.getDay()}/${lunar.getMonth()}</span>
-          </div>
-          <div class="lunar-good" style="font-size:0.9rem">${good.join(", ")}</div>
+        <div style="border-bottom:1px solid #334155;padding:8px">
+          <b>${d.toLocaleDateString("vi-VN")}</b>
+          🌙 ${lunar.getDay()}/${lunar.getMonth()}
+          <div class="good">${good.join(", ")}</div>
         </div>
       `;
     }
   }
+  const listEl = document.getElementById("list");
   if(listEl) listEl.innerHTML = html;
 }
 
+// ===== XEM TUỔI LÀM NHÀ =====
 function checkAgeHouse() {
     let year = document.getElementById("year-birth").value;
     if(!year) return;
@@ -582,12 +620,14 @@ function checkAgeHouse() {
                   "<li>1984 - Giáp Tý</li><li>1993 - Quý Dậu</li>" +
                   "<li>1996 - Bính Tý</li></ul>";
     }
-    document.getElementById("age-house-result").innerHTML = result;
+    const resBox = document.getElementById("age-house-result");
+    if(resBox) resBox.innerHTML = result;
 }
 
+// ===== QUẢN LÝ BÁO GIÁ =====
 let lastTotal = 0;
 let currentTotal = 0;
-let tableSelected = [0, 1, 4, 5, 7]; // Mặc định chọn một số mục, KHÔNG chọn mục 6 (đào tạo)
+let tableSelected = [0, 1, 4, 5, 7]; 
 
 function formatMoney(num) { return Math.round(num).toLocaleString('vi-VN') + " đ"; }
 
@@ -654,39 +694,25 @@ function getDensity(area) {
 }
 
 function toggleTableService(index) {
-    // Logic: Nếu tick mục 6 (Phần mềm & Đào tạo), bỏ hết mục khác. 
-    // Nếu tick mục khác, bỏ mục 6.
-    
     if (index === 6) {
-        // Đang tick vào mục đào tạo
-        if (!tableSelected.includes(6)) {
-            tableSelected = [6]; // Chỉ giữ mục 6
-        } else {
-            tableSelected = []; // Bỏ chọn nếu đang chọn
-        }
+        if (!tableSelected.includes(6)) tableSelected = [6];
+        else tableSelected = [];
     } else {
-        // Đang tick vào một mục khác (không phải 6)
-        // Loại bỏ mục 6 nếu nó đang được chọn
         tableSelected = tableSelected.filter(i => i !== 6);
+        if (index === 2) tableSelected = tableSelected.filter(i => i !== 7);
+        else if (index === 7) tableSelected = tableSelected.filter(i => i !== 2);
         
-        // Loại trừ tương hỗ Trọn gói (2) và Phần thô (7)
-        if (index === 2) {
-            tableSelected = tableSelected.filter(i => i !== 7);
-        } else if (index === 7) {
-            tableSelected = tableSelected.filter(i => i !== 2);
-        }
-
-        if (tableSelected.includes(index)) {
-            tableSelected = tableSelected.filter(i => i !== index);
-        } else {
-            tableSelected.push(index);
-        }
+        if (tableSelected.includes(index)) tableSelected = tableSelected.filter(i => i !== index);
+        else tableSelected.push(index);
     }
     calculatePrice();
 }
 
 function calculatePrice() {
-    const lotArea = parseFloat(document.getElementById('lot-area').value) || 0;
+    let lotAreaInput = document.getElementById('lot-area');
+    let lotAreaRaw = parseFloat(lotAreaInput.value);
+    const lotArea = lotAreaRaw < 25 ? 25 : (lotAreaRaw || 25);
+    
     const floorCount = parseFloat(document.getElementById('floors').value);
     const has3D = document.getElementById('chk-3d').checked;
     const isKiet = document.getElementById('chk-kiet').checked;
@@ -694,6 +720,7 @@ function calculatePrice() {
 
     const density = getDensity(lotArea);
     const maxGroundArea = (lotArea * density) / 100;
+    
     const densityEl = document.getElementById('density-result');
     if(densityEl) {
         densityEl.innerHTML = `Mật độ XD (${ward}): ${density.toFixed(1)}% <small id="max-ground-area">Diện tích sàn T1 tối đa: ${maxGroundArea.toFixed(1)} m²</small>`;
@@ -703,28 +730,14 @@ function calculatePrice() {
     const buildAreaEl = document.getElementById('build-area-result');
     if(buildAreaEl) buildAreaEl.innerHTML = `Tổng diện tích sàn XD: ${buildArea.toFixed(1)} m²`;
 
-    let xinPhepBase = 0;
-    if (floorCount <= 1) xinPhepBase = 1000000;
-    else if (floorCount <= 2) xinPhepBase = 2000000;
-    else if (floorCount <= 3) xinPhepBase = 3000000;
-    else if (floorCount <= 4) xinPhepBase = 4000000;
-    else xinPhepBase = 5000000;
+    let xinPhepBase = floorCount <= 1 ? 1000000 : floorCount <= 2 ? 2000000 : floorCount <= 3 ? 3000000 : floorCount <= 4 ? 4000000 : 5000000;
     const finalXinPhep = lotArea > 100 ? (xinPhepBase * 1.2) : xinPhepBase;
-
-    const designUnitPrice = has3D ? 200000 : 115000;
-    const finalDesignPrice = designUnitPrice * buildArea;
-
-    const constructionUnitPrice = isKiet ? 8500000 : 8000000;
-    const finalConstructionPrice = constructionUnitPrice * buildArea;
-
-    const constructionRoughUnitPrice = isKiet ? 4700000 : 4500000;
-    const finalConstructionRoughPrice = constructionRoughUnitPrice * buildArea;
-
+    const finalDesignPrice = (has3D ? 200000 : 115000) * buildArea;
+    const finalConstructionPrice = (isKiet ? 8500000 : 8000000) * buildArea;
+    const finalConstructionRoughPrice = (isKiet ? 4700000 : 4500000) * buildArea;
     const finalEstimationPrice = 20000 * buildArea;
 
-    // Mapping để hiển thị theo thứ tự yêu cầu (7 trên 6)
     const displayMapping = [0, 1, 2, 3, 4, 5, 7, 6];
-
     currentTotal = 0;
     let html = "";
     
@@ -757,14 +770,15 @@ function calculatePrice() {
 }
 
 function submitToGoogleForm() {
+    let lotAreaVal = document.getElementById('lot-area').value;
+    if(parseFloat(lotAreaVal) < 25) lotAreaVal = 25;
     const ward = document.getElementById('select-ward').value;
-    const lotArea = document.getElementById('lot-area').value;
     const floors = document.getElementById('floors').value;
     const totalPrice = document.getElementById('total-price').innerText;
     const baseUrl = "https://docs.google.com/forms/d/e/1FAIpQLScP58un91tUZ19nPmmwVGRmKwJ2g40cqId-MHOM3pWYgVjBvA/viewform";
     const params = new URLSearchParams({
         "usp": "pp_url", "entry.1804705596": "Khách hàng web", "entry.1203062325": "N/A", "entry.1226593539": "N/A",
-        "entry.1887258380": `Phường ${ward}`, "entry.1118949503": `${lotArea} m2`, "entry.2064030678": `${floors} tầng`, "entry.1384752528": totalPrice
+        "entry.1887258380": `Phường ${ward}`, "entry.1118949503": `${lotAreaVal} m2`, "entry.2064030678": `${floors} tầng`, "entry.1384752528": totalPrice
     });
     window.open(`${baseUrl}?${params.toString()}`, "_blank");
 }
@@ -793,10 +807,17 @@ function loadWeather() {
 window.onload = function() {
     calculatePrice();
     loadWeather();
-    renderLunarToday();
-    renderLunarList();
+    renderToday();
+    renderList();
     setInterval(loadWeather, 30 * 60 * 1000);
-    setInterval(renderLunarToday, 1800000);
+    setInterval(renderToday, 1800000);
+
+    document.getElementById('lot-area').addEventListener('blur', function() {
+        if(parseFloat(this.value) < 25 || !this.value) {
+            this.value = 25;
+            calculatePrice();
+        }
+    });
 };
 </script>
 </body>
