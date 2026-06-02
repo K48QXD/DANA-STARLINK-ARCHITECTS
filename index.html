@@ -39,7 +39,7 @@
         /* Signature Tool */
         #canvas { touch-action: none; } /* Prevents scrolling when drawing on mobile */
 
-        /* PDF Viewer Sidebar Scrollbar */
+        /* PDF Viewer Sidebar Scrollbar (Used in Lunar Calendar list as well) */
         .pdf-sidebar::-webkit-scrollbar { width: 6px; }
         .pdf-sidebar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .pdf-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
@@ -101,55 +101,6 @@
                 <p id="updateTime" class="text-xs text-gray-400 text-right mt-4"></p>
             </section>
         </div>
-
-        <!-- PDF VIEWERS SECTION -->
-        <section class="space-y-6">
-            <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 flex items-center gap-3">
-                <i class="fa-solid fa-file-pdf text-gold-accent"></i> Tài Liệu Quy Hoạch
-            </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- PDF Viewer 1 -->
-                <div class="flex flex-col md:flex-row h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                    <div class="pdf-sidebar w-full md:w-64 bg-[#0b3a5d] text-white p-4 overflow-y-auto shrink-0">
-                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-list"></i> Mục lục phần 1</h3>
-                        <div class="space-y-1 text-sm">
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">I. Lý do lập quy hoạch</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">II. Điều kiện tự nhiên</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">III. Tầm nhìn</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">IV. Dân số</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">V. Cấu trúc đô thị</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VI. Khu chức năng</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VII. Giao thông</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VIII. Hạ tầng</a>
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-gray-100 relative">
-                        <iframe class="w-full h-full absolute inset-0 border-none" src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview"></iframe>
-                    </div>
-                </div>
-
-                <!-- PDF Viewer 2 -->
-                <div class="flex flex-col md:flex-row h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-                    <div class="pdf-sidebar w-full md:w-64 bg-[#0b3a5d] text-white p-4 overflow-y-auto shrink-0">
-                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-list"></i> Mục lục phần 2</h3>
-                        <div class="space-y-1 text-sm">
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">I. Lý do & quy hoạch</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">II. Tự nhiên</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">III. Tầm nhìn</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">IV. Dân số</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">V. Cấu trúc đô thị</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VI. Khu chức năng</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VII. Giao thông</a>
-                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VIII. Hạ tầng</a>
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-gray-100 relative">
-                        <iframe class="w-full h-full absolute inset-0 border-none" src="https://drive.google.com/file/d/104buQnOeAlGYgasv8UwfK2d4CMQHp6Uk/preview"></iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- LUNAR CALENDAR SECTION -->
         <section class="bg-slate-900 text-slate-50 rounded-2xl shadow-2xl p-6 md:p-10 mx-auto w-full">
