@@ -259,19 +259,86 @@
             <iframe src="https://docs.google.com/document/d/e/2PACX-1vRCem-Vno9NUkejy1PmAj-OAuWMKpRE0QQp58QXf7h4PUaXYPThGNlM3mp50AtvqRrWORKgRI09Em11/pub?embedded=true"></iframe>
         </div>
     </div>
-<iframe
-    src="https://drive.google.com/file/d/104buQnOeAlGYgasv8UwfK2d4CMQHp6Uk/preview"
-    width="100%"
-    height="700px"
-    style="border: none;">
-</iframe>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>PDF Viewer + Sidebar</title>
 
-<iframe
-    src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview"
-    width="100%"
-    height="700px"
-    style="border: none;">
-</iframe>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 280px;
+    background: #0b3a5d;
+    color: white;
+    padding: 15px;
+    overflow-y: auto;   /* 👈 thanh trượt bên */
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.sidebar a:hover {
+    background: #155a86;
+}
+
+/* ===== PDF AREA ===== */
+.content {
+    flex: 1;
+    background: #f5f7fb;
+    padding: 10px;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h3>📑 Mục lục</h3>
+    <a href="#">I. Lý do lập quy hoạch</a>
+    <a href="#">II. Điều kiện tự nhiên</a>
+    <a href="#">III. Tầm nhìn</a>
+    <a href="#">IV. Dân số</a>
+    <a href="#">V. Cấu trúc đô thị</a>
+    <a href="#">VI. Khu chức năng</a>
+    <a href="#">VII. Giao thông</a>
+    <a href="#">VIII. Hạ tầng</a>
+</div>
+
+<!-- PDF -->
+<div class="content">
+    <iframe 
+        src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview">
+    </iframe>
+</div>
+
+</body>
+</html>
 
 <div class="lunar-container">
     <h2>📅 Lịch Âm Việt Nam</h2>
