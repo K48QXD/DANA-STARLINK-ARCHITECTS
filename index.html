@@ -335,6 +335,82 @@ iframe {
     <iframe 
         src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview">
     </iframe>
+    <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>PDF Viewer</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    display:flex;
+    height:100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    width:260px;
+    background:#0b3a5d;
+    color:#fff;
+    overflow-y:auto; /* 👈 thanh trượt bên */
+    padding:15px;
+}
+
+.sidebar h3{
+    margin-top:0;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    padding:8px;
+    text-decoration:none;
+    border-radius:6px;
+}
+
+.sidebar a:hover{
+    background:#155a86;
+}
+
+/* ===== CONTENT ===== */
+.content{
+    flex:1;
+    background:#f5f7fb;
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h3>📑 Mục lục</h3>
+    <a href="#">I. Lý do & quy hoạch</a>
+    <a href="#">II. Tự nhiên</a>
+    <a href="#">III. Tầm nhìn</a>
+    <a href="#">IV. Dân số</a>
+    <a href="#">V. Cấu trúc đô thị</a>
+    <a href="#">VI. Khu chức năng</a>
+    <a href="#">VII. Giao thông</a>
+    <a href="#">VIII. Hạ tầng</a>
+</div>
+
+<div class="content">
+    <iframe
+        src="https://drive.google.com/file/d/104buQnOeAlGYgasv8UwfK2d4CMQHp6Uk/preview">
+    </iframe>
+</div>
+
+</body>
+</html>
 </div>
 
 </body>
