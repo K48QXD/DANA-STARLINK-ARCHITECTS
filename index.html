@@ -253,6 +253,59 @@
             <h1 class="brand-name">DANANGMOI.VN</h1>
             <div class="brand-divider"></div>
             <div class="brand-slogan">Đà Nẵng Mới</div>
+    <script>
+function readNumber(n) {
+    const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+
+    if (n === 0) return "không";
+
+    if (n < 10) return units[n];
+
+    if (n < 20) {
+        return "mười" + (n === 15 ? " lăm" : (n % 10 ? " " + units[n % 10] : ""));
+    }
+
+    if (n < 100) {
+        let tens = Math.floor(n / 10);
+        let ones = n % 10;
+
+        let text = units[tens] + " mươi";
+
+        if (ones === 1) text += " mốt";
+        else if (ones === 4) text += " tư";
+        else if (ones === 5) text += " lăm";
+        else if (ones > 0) text += " " + units[ones];
+
+        return text;
+    }
+
+    if (n < 1000) {
+        let h = Math.floor(n / 100);
+        let r = n % 100;
+        return units[h] + " trăm" + (r ? " " + readNumber(r) : "");
+    }
+
+    if (n < 1000000) {
+        let k = Math.floor(n / 1000);
+        let r = n % 1000;
+        return readNumber(k) + " nghìn" + (r ? " " + readNumber(r) : "");
+    }
+
+    if (n < 1000000000) {
+        let m = Math.floor(n / 1000000);
+        let r = n % 1000000;
+        return readNumber(m) + " triệu" + (r ? " " + readNumber(r) : "");
+    }
+
+    return "số quá lớn";
+}
+
+function numberToMoney(n) {
+    if (n === 0) return "Không đồng";
+    return (readNumber(n).charAt(0).toUpperCase() + readNumber(n).slice(1)) + " đồng";
+}
+</script>
+        
         </div>
         
         <div class="iframe-container">
