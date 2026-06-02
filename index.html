@@ -102,6 +102,43 @@
             </section>
         </div>
 
+        <!-- BIRTHDAY CARD CREATOR SECTION -->
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
+            <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 mb-6 w-full flex items-center gap-3">
+                <i class="fa-solid fa-gift text-gold-accent"></i> Tạo Thiệp Sinh Nhật Online
+            </h2>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <!-- Controls -->
+                <div class="lg:col-span-2 space-y-5">
+                    <div>
+                        <label for="bday-name" class="block text-sm font-semibold text-gray-700 mb-1">Tên người nhận:</label>
+                        <input type="text" id="bday-name" placeholder="Ví dụ: Nguyễn Văn A" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-gold-accent focus:border-gold-accent outline-none transition">
+                    </div>
+                    <div>
+                        <label for="bday-theme" class="block text-sm font-semibold text-gray-700 mb-1">Chủ đề màu sắc:</label>
+                        <select id="bday-theme" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-gold-accent focus:border-gold-accent outline-none transition bg-white">
+                            <option value="luxury">Đen Vàng (Sang Trọng)</option>
+                            <option value="pink">Hồng (Ngọt Ngào)</option>
+                            <option value="blue">Xanh (Tươi Mát)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="bday-message" class="block text-sm font-semibold text-gray-700 mb-1">Lời chúc:</label>
+                        <textarea id="bday-message" rows="4" placeholder="Nhập lời chúc của bạn..." class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-gold-accent focus:border-gold-accent outline-none transition"></textarea>
+                    </div>
+                    <button onclick="downloadBdayCard()" class="w-full px-6 py-3 bg-navy-dark hover:bg-slate-800 text-white font-bold rounded shadow-md transition flex justify-center items-center gap-2 text-lg">
+                        <i class="fa-solid fa-download"></i> Tải Thiệp Về Máy
+                    </button>
+                    <p class="text-xs text-gray-500 italic text-center">* Nhấn Tải Thiệp để lưu ảnh chất lượng cao vào thiết bị của bạn.</p>
+                </div>
+                <!-- Preview Canvas -->
+                <div class="lg:col-span-3 flex justify-center items-center bg-gray-100 rounded-lg border border-gray-200 overflow-hidden p-2 relative shadow-inner">
+                    <!-- Logical canvas is 800x600 for good resolution, scaled via CSS to fit container -->
+                    <canvas id="bday-canvas" width="800" height="600" class="w-full max-w-[800px] h-auto rounded shadow bg-white"></canvas>
+                </div>
+            </div>
+        </section>
+
         <!-- NUMBER TO MONEY CONVERTER -->
         <section class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
             <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 mb-6 w-full flex items-center gap-3">
@@ -228,6 +265,7 @@
                     if (parts[i] !== 0) {
                         let text = read3Digits(parts[i]);
                         if (scales[parts.length - 1 - i]) {
+                            text += " " + scales[scales.length - 1 - i] || "tỷ tỷ"; // Quick fallback for giant numbers not handled
                             text += " " + scales[parts.length - 1 - i];
                         }
                         result.push(text);
@@ -246,17 +284,13 @@
         const ctx = canvas.getContext("2d");
         let drawing = false;
 
-        // Resize logic to ensure canvas acts responsively
         function resizeCanvas() {
             const ratio = Math.max(window.devicePixelRatio || 1, 1);
             const parentWidth = canvas.parentElement.clientWidth;
-            // Set display size
             canvas.style.width = parentWidth + "px";
             canvas.style.height = "250px";
-            // Set actual size in memory (scaled to account for extra pixel density)
             canvas.width = parentWidth * ratio;
             canvas.height = 250 * ratio;
-            // Normalize coordinate system to use css pixels
             ctx.scale(ratio, ratio);
         }
 
@@ -272,10 +306,7 @@
                 clientY = e.touches[0].clientY;
             }
             
-            return {
-                x: clientX - rect.left,
-                y: clientY - rect.top
-            };
+            return { x: clientX - rect.left, y: clientY - rect.top };
         }
 
         canvas.addEventListener("mousedown", (e) => { drawing = true; draw(e); });
@@ -305,8 +336,6 @@
         }
 
         function clearCanvas() {
-            // Because we scaled context, clear using canvas physical dimensions divided by scale, 
-            // but simplest is resetting transform temporarily
             ctx.save();
             ctx.setTransform(1, 0, 0, 1, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -317,6 +346,111 @@
         function saveSignature() {
             const dataURL = canvas.toDataURL("image/png");
             document.getElementById("output").src = dataURL;
+        }
+
+        /* ================= BIRTHDAY CARD SCRIPT ================= */
+        function drawBdayCard() {
+            const bCanvas = document.getElementById('bday-canvas');
+            if(!bCanvas) return;
+            const bCtx = bCanvas.getContext('2d');
+            
+            const name = document.getElementById('bday-name').value || 'Người Nhận';
+            const msg = document.getElementById('bday-message').value || 'Chúc bạn có một ngày sinh nhật thật vui vẻ,\nngập tràn tiếng cười và hạnh phúc nhé!';
+            const theme = document.getElementById('bday-theme').value;
+
+            // Clear
+            bCtx.clearRect(0, 0, bCanvas.width, bCanvas.height);
+
+            // Determine colors by theme
+            let bgColor, borderColor, titleColor, nameColor, msgColor;
+            if (theme === 'luxury') {
+                bgColor = '#1A2F4D'; 
+                borderColor = '#C6A43F'; 
+                titleColor = '#FFFFFF';
+                nameColor = '#C6A43F';
+                msgColor = '#E0DCD4';
+            } else if (theme === 'pink') {
+                bgColor = '#FDF2F8';
+                borderColor = '#F472B6';
+                titleColor = '#BE185D';
+                nameColor = '#DB2777';
+                msgColor = '#831843';
+            } else { // blue
+                bgColor = '#F0F9FF';
+                borderColor = '#38BDF8';
+                titleColor = '#0369A1';
+                nameColor = '#0284C7';
+                msgColor = '#0C4A6E';
+            }
+
+            // Fill Background
+            bCtx.fillStyle = bgColor;
+            bCtx.fillRect(0, 0, bCanvas.width, bCanvas.height);
+
+            // Draw Border
+            bCtx.strokeStyle = borderColor;
+            bCtx.lineWidth = 15;
+            bCtx.strokeRect(30, 30, bCanvas.width - 60, bCanvas.height - 60);
+            // Inner thin border
+            bCtx.lineWidth = 2;
+            bCtx.strokeRect(50, 50, bCanvas.width - 100, bCanvas.height - 100);
+
+            // Draw Decor (Emojis)
+            bCtx.font = '50px Arial';
+            bCtx.textAlign = 'center';
+            bCtx.fillText('✨', 110, 120);
+            bCtx.fillText('✨', bCanvas.width - 110, 120);
+            bCtx.font = '100px Arial';
+            bCtx.fillText('🎂', bCanvas.width / 2, bCanvas.height - 100);
+
+            // Texts Setup
+            bCtx.textAlign = 'center';
+            bCtx.textBaseline = 'top';
+            
+            // Title
+            bCtx.fillStyle = titleColor;
+            bCtx.font = 'bold 46px Arial, sans-serif';
+            bCtx.fillText('CHÚC MỪNG SINH NHẬT', bCanvas.width / 2, 110);
+
+            // Name
+            bCtx.fillStyle = nameColor;
+            bCtx.font = 'bold 72px "Times New Roman", serif';
+            bCtx.fillText(name, bCanvas.width / 2, 200);
+
+            // Message wrapping
+            bCtx.fillStyle = msgColor;
+            bCtx.font = 'italic 34px Arial, sans-serif';
+            
+            const lines = msg.split('\n');
+            let startY = 320;
+            const lineHeight = 48;
+            const maxWidth = bCanvas.width - 180;
+
+            for (let i = 0; i < lines.length; i++) {
+                let words = lines[i].split(' ');
+                let line = '';
+                for (let n = 0; n < words.length; n++) {
+                    let testLine = line + words[n] + ' ';
+                    let metrics = bCtx.measureText(testLine);
+                    if (metrics.width > maxWidth && n > 0) {
+                        bCtx.fillText(line.trim(), bCanvas.width / 2, startY);
+                        line = words[n] + ' ';
+                        startY += lineHeight;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                bCtx.fillText(line.trim(), bCanvas.width / 2, startY);
+                startY += lineHeight;
+            }
+        }
+
+        function downloadBdayCard() {
+            const canvas = document.getElementById('bday-canvas');
+            const link = document.createElement('a');
+            link.download = 'thiep-sinh-nhat.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
         }
 
         /* ================= LUNAR CALENDAR SCRIPT ================= */
@@ -354,7 +488,7 @@
         }
 
         function renderToday() {
-            if(typeof Solar === 'undefined') return; // Prevents crash if lunar.js is blocked
+            if(typeof Solar === 'undefined') return; 
             let now = new Date();
             let solar = Solar.fromDate(now);
             let lunar = solar.getLunar();
@@ -504,6 +638,18 @@
             // Run features
             loadWeather();
             
+            // Birthday Card Listeners
+            const bdayInputs = ['bday-name', 'bday-message', 'bday-theme'];
+            bdayInputs.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) {
+                    el.addEventListener('input', drawBdayCard);
+                    el.addEventListener('change', drawBdayCard); // for select dropdown
+                }
+            });
+            // Initial draw for Birthday card
+            drawBdayCard();
+
             // Wait slightly for lunar JS to parse if network is slow
             setTimeout(() => {
                 renderToday();
