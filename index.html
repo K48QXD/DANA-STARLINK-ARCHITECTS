@@ -253,7 +253,110 @@
             <h1 class="brand-name">DANANGMOI.VN</h1>
             <div class="brand-divider"></div>
             <div class="brand-slogan">Đà Nẵng Mới</div>
-    <script>
+  <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chữ ký online</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    background:#f5f7fb;
+}
+
+canvas{
+    border:2px solid #333;
+    background:white;
+    touch-action:none;
+}
+
+.buttons{
+    margin-top:10px;
+}
+
+button{
+    padding:8px 12px;
+    margin:5px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h2>✍️ TẠO CHỮ KÝ ONLINE</h2>
+
+<canvas id="canvas" width="600" height="250"></canvas>
+
+<div class="buttons">
+    <button onclick="clearCanvas()">Xóa</button>
+    <button onclick="saveSignature()">Lưu</button>
+</div>
+
+<p>Ảnh chữ ký:</p>
+<img id="output" style="border:1px solid #ccc; margin-top:10px;">
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let drawing = false;
+
+function getPos(e){
+    const rect = canvas.getBoundingClientRect();
+    return {
+        x: (e.clientX || e.touches[0].clientX) - rect.left,
+        y: (e.clientY || e.touches[0].clientY) - rect.top
+    };
+}
+
+canvas.addEventListener("mousedown", () => drawing = true);
+canvas.addEventListener("mouseup", () => {
+    drawing = false;
+    ctx.beginPath();
+});
+canvas.addEventListener("mousemove", draw);
+
+canvas.addEventListener("touchstart", () => drawing = true);
+canvas.addEventListener("touchend", () => {
+    drawing = false;
+    ctx.beginPath();
+});
+canvas.addEventListener("touchmove", draw);
+
+function draw(e){
+    if(!drawing) return;
+
+    e.preventDefault();
+    const pos = getPos(e);
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#000";
+
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+}
+
+function clearCanvas(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    document.getElementById("output").src = "";
+}
+
+function saveSignature(){
+    const dataURL = canvas.toDataURL("image/png");
+    document.getElementById("output").src = dataURL;
+}
+</script>
+
+</body>
+</html>
+            
+            <script>
 function readNumber(n) {
     const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
 
