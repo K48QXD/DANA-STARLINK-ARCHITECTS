@@ -7,818 +7,560 @@
     
     <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png">
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/K48QXD/DANA-STARLINK-ARCHITECTS/main/favicon-16x16.png" type="image/x-icon">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS for modern, responsive layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: { dark: '#1A2F4D' },
+                        gold: { accent: '#C6A43F' },
+                        body: '#F8F6F2'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-body: #F8F6F2;
-            --navy-dark: #1A2F4D;
-            --gold-accent: #C6A43F;
-            --text-content: #333333;
-            --card-bg: #FFFFFF;
-            --border-light: #E0DCD4;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            background-color: var(--bg-body);
-            color: var(--text-content);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .header {
-            min-height: 650px;
-            background-color: var(--navy-dark);
+        /* Custom Styles to supplement Tailwind */
+        body { font-family: Arial, Helvetica, sans-serif; background-color: #F8F6F2; }
+        
+        .hero-bg {
             background-image: linear-gradient(rgba(26, 47, 77, 0.9), rgba(26, 47, 77, 0.8)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 80px 0;
         }
 
-        .header-content {
-            position: relative; z-index: 2; padding: 0 20px; max-width: 1100px; width: 100%;
-        }
+        /* Signature Tool */
+        #canvas { touch-action: none; } /* Prevents scrolling when drawing on mobile */
 
-        .brand-wrapper {
-            margin-bottom: 40px; display: flex; flex-direction: column; align-items: center;
-        }
+        /* PDF Viewer Sidebar Scrollbar */
+        .pdf-sidebar::-webkit-scrollbar { width: 6px; }
+        .pdf-sidebar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .pdf-sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
 
-        .brand-name {
-            font-size: 2.8rem; color: var(--gold-accent); font-weight: bold; letter-spacing: 4px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); line-height: 1.2;
-        }
-
-        .brand-divider {
-            width: 80px; height: 3px; background: var(--gold-accent); margin: 15px 0;
-        }
-
-        .brand-slogan {
-            font-size: 1.2rem; color: #FFFFFF; text-transform: uppercase; font-weight: bold; letter-spacing: 2px; max-width: 800px; line-height: 1.4;
-        }
-
-        .iframe-container {
-            width: 100%; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4); border: 4px solid rgba(255,255,255,0.1); height: 450px; margin-top: 20px;
-        }
-
-        .iframe-container iframe { width: 100%; height: 100%; border: none; }
-
-        .container {
-            max-width: 1100px; margin: -60px auto 60px; padding: 0 20px; flex: 1; position: relative; z-index: 3;
-        }
-
-        .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-bottom: 40px;
-        }
-
-        .card {
-            background: var(--card-bg); padding: 30px; border-radius: 4px; border: 1px solid var(--border-light); box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: transform 0.3s ease;
-        }
-        
-        .card:hover { transform: translateY(-5px); }
-
-        .calc-section {
-            background: var(--card-bg); border-radius: 4px; padding: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 50px; border: 1px solid var(--border-light);
-        }
-
-        .calc-header { text-align: center; margin-bottom: 35px; }
-
-        .calc-header h2 {
-            color: var(--navy-dark); text-transform: uppercase; font-size: 1.6rem; margin-bottom: 10px; border: none; justify-content: center;
-        }
-
-        .input-group {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;
-        }
-
-        .input-item label {
-            display: block; font-weight: bold; margin-bottom: 10px; color: var(--navy-dark); font-size: 0.95rem;
-        }
-
-        .option-box {
-            background: #FDFDFD; padding: 15px; border-radius: 4px; border: 1px solid #EDEDED; margin-bottom: 15px;
-        }
-
-        .input-item input[type="text"],
-        .input-item input[type="number"], 
-        .input-item select {
-            width: 100%; padding: 12px; border: 1px solid #DDD; border-radius: 4px; font-size: 1rem; box-sizing: border-box; background-color: #FFF; font-family: Arial, sans-serif;
-        }
-
-        .checkbox-options {
-            display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
-        }
-
-        .checkbox-options label {
-            display: flex; align-items: center; font-weight: bold; cursor: pointer; gap: 8px; margin: 0; font-size: 0.9rem; color: var(--text-content);
-        }
-
-        .display-results-wrapper {
-            margin-bottom: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-        }
-
-        .display-area-box {
-            padding: 20px; border-radius: 4px; font-weight: bold; text-align: center; font-size: 1.1rem; background: #F9F9F9; border: 1px solid var(--border-light); color: var(--navy-dark); display: flex; flex-direction: column; justify-content: center;
-        }
-
-        .density-box { background: #F4F7F9; border-color: #D1DDE5; }
-
-        .display-area-box small {
-            display: block; font-size: 0.85rem; opacity: 0.7; margin-top: 6px; font-weight: normal;
-        }
-
-        .result-table {
-            width: 100%; border-collapse: collapse; margin-top: 15px;
-        }
-
-        .result-table th, .result-table td {
-            text-align: left; padding: 16px; border-bottom: 1px solid #F0F0F0;
-        }
-
-        .result-table th {
-            background: #FAFAFA; color: var(--navy-dark); font-weight: bold; font-size: 0.9rem; text-transform: uppercase;
-        }
-
-        .chk-col { width: 50px; text-align: center !important; }
-        .chk-col input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--gold-accent); }
-
-        .price-val { font-weight: bold; color: var(--gold-accent); text-align: right; }
-
-        .total-row { background: var(--navy-dark); color: #FFFFFF !important; font-weight: bold; }
-        .total-row td { border: none; padding: 25px 16px; }
-        .total-row .price-val { color: var(--gold-accent); font-size: 1.6rem; }
-
-        .text-price-row { background: #fdfdfd; border-top: 1px solid var(--border-light); }
-        .text-price-row td { padding: 10px 16px 20px; font-style: italic; color: #666; text-align: right; font-size: 0.95rem; }
-
-        .submit-section { text-align: center; padding-top: 30px; }
-
-        .btn-submit {
-            background-color: var(--gold-accent); color: white; border: none; padding: 18px 45px; font-size: 1.2rem; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(198, 164, 63, 0.3); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: Arial, sans-serif;
-        }
-
-        .btn-submit:hover { background-color: #b59335; transform: translateY(-3px); box-shadow: 0 15px 25px rgba(198, 164, 63, 0.4); }
-
-        h2 {
-            color: var(--navy-dark); font-size: 1.3rem; margin-top: 0; border-bottom: 2px solid var(--gold-accent); padding-bottom: 15px; display: flex; align-items: center; gap: 12px; font-weight: bold;
-        }
-
-        h2 i { color: var(--gold-accent); }
-
-        ul { padding-left: 20px; margin: 0; }
-        li { margin-bottom: 10px; font-weight: normal; color: var(--text-content); }
-        p { margin: 15px 0 0 0; font-weight: normal; color: var(--text-content); }
-
-        /* ===== LỊCH ÂM VIỆT NAM STYLES ===== */
-        .lunar-container {
-            max-width: 900px; margin: 40px auto; padding: 20px; background: #0f172a; color: #f8fafc; text-align: center; border-radius: 15px;
-        }
-        .lunar-container h2 { color: #ffffff; border: none; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
-        .lunar-card {
-            background: #1e293b; padding: 15px; border-radius: 12px; margin-bottom: 15px; text-align: left; color: #f8fafc;
-        }
-        .lunar-card h3 { color: #38bdf8; margin-top: 0; border-bottom: 1px solid #334155; padding-bottom: 10px; font-size: 1.2rem; text-align: center; }
-        .tag {
-            display: inline-block; background: #334155; padding: 5px 10px; margin: 3px; border-radius: 8px; font-size: 0.85rem; color: #ffffff;
-        }
-        .good { color: #4ade80; }
-        .bad { color: #f87171; }
-
-        .age-check-box { text-align: center; padding: 20px; color: #ffffff; }
-        .age-check-box input {
-            padding: 12px; width: 80%; max-width: 300px; margin-bottom: 15px; border-radius: 8px; border: none; font-size: 1rem; color: #333; background: #fff;
-        }
-        .age-check-box button {
-            padding: 12px 25px; background: #e67e22; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s;
-        }
-        .age-check-box button:hover { background: #d35400; }
-        .age-result { text-align: left; margin-top: 20px; background: #334155; padding: 20px; border-radius: 8px; font-size: 1rem; color: #ffffff; line-height: 1.6; }
-        .age-result b { color: #f8fafc; }
-
-        .bottom-contact {
-            background-color: var(--navy-dark); color: #FFFFFF; padding: 60px 15px; text-align: center;
-        }
-
-        .footer-flex { display: flex; flex-direction: column; align-items: center; gap: 25px; }
-
-        
-
-
-        
-
-        .email-info { font-size: 1.1rem; opacity: 0.8; font-weight: normal; color: #ffffff; }
-
-        .weather-widget {
-            padding: 40px 20px; background: #fff; border-top: 1px solid var(--border-light); text-align: center; color: #333;
-        }
-        .weather-widget h2 { justify-content: center; border: none; margin-bottom: 10px; }
-        .weather-container {
-            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;
-        }
-        .weather-card {
-            background: #F8F6F2; padding: 15px; border-radius: 12px; width: 170px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid var(--border-light);
-        }
-        .weather-card h4 { margin: 5px 0; color: var(--navy-dark); }
-        .weather-card img { width: 60px; }
-        .weather-small { font-size: 13px; color: #555; margin: 3px 0; }
-
-        @media (max-width: 768px) {
-            .header { min-height: 500px; padding: 50px 0; }
-            .brand-name { font-size: 1.6rem; letter-spacing: 2px; }
-            .brand-slogan { font-size: 0.95rem; }
-            .iframe-container { height: 350px; }
-            .container { margin-top: -40px; }
-            .input-group { grid-template-columns: 1fr; }
-            .display-results-wrapper { grid-template-columns: 1fr; }
-            .contact-info { font-size: 1.4rem; }
-            .result-table { font-size: 0.85rem; }
-            .calc-section { padding: 25px; }
-        }
+        /* Lunar Calendar Custom Styles */
+        .lunar-card-bg { background: #1e293b; }
+        .lunar-tag { display: inline-block; background: #334155; padding: 5px 10px; margin: 3px; border-radius: 8px; font-size: 0.85rem; color: #ffffff; }
     </style>
 </head>
-<body>
+<body class="text-gray-800 flex flex-col min-h-screen">
 
-<div class="header">
-    <div class="header-content">
-        <div class="brand-wrapper">
-            <h1 class="brand-name">DANANGMOI.VN</h1>
-            <div class="brand-divider"></div>
-            <div class="brand-slogan">Đà Nẵng Mới</div>
-  <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>Chữ ký online</title>
+    <!-- HERO SECTION -->
+    <header class="hero-bg min-h-[500px] md:min-h-[600px] flex flex-col justify-center items-center text-center relative py-16 px-4">
+        <div class="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl text-gold-accent font-bold tracking-[4px] drop-shadow-md mb-4">DANANGMOI.VN</h1>
+            <div class="w-20 h-1 bg-gold-accent mb-4"></div>
+            <div class="text-white text-lg md:text-xl uppercase font-bold tracking-widest max-w-3xl mb-12">Đà Nẵng Mới</div>
+        </div>
+    </header>
 
-<style>
-body{
-    font-family: Arial;
-    text-align:center;
-    background:#f5f7fb;
-}
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-6xl mx-auto w-full px-4 -mt-24 relative z-20 space-y-12 mb-16">
+        
+        <!-- Google Doc Viewer -->
+        <section class="bg-white rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.2)] border-4 border-white/20 overflow-hidden h-[450px]">
+            <iframe class="w-full h-full border-none" src="https://docs.google.com/document/d/e/2PACX-1vRCem-Vno9NUkejy1PmAj-OAuWMKpRE0QQp58QXf7h4PUaXYPThGNlM3mp50AtvqRrWORKgRI09Em11/pub?embedded=true"></iframe>
+        </section>
 
-canvas{
-    border:2px solid #333;
-    background:white;
-    touch-action:none;
-}
-
-.buttons{
-    margin-top:10px;
-}
-
-button{
-    padding:8px 12px;
-    margin:5px;
-    cursor:pointer;
-}
-</style>
-</head>
-
-<body>
-
-<h2>✍️ TẠO CHỮ KÝ ONLINE</h2>
-
-<canvas id="canvas" width="600" height="250"></canvas>
-
-<div class="buttons">
-    <button onclick="clearCanvas()">Xóa</button>
-    <button onclick="saveSignature()">Lưu</button>
-</div>
-
-<p>Ảnh chữ ký:</p>
-<img id="output" style="border:1px solid #ccc; margin-top:10px;">
-
-<script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-
-let drawing = false;
-
-function getPos(e){
-    const rect = canvas.getBoundingClientRect();
-    return {
-        x: (e.clientX || e.touches[0].clientX) - rect.left,
-        y: (e.clientY || e.touches[0].clientY) - rect.top
-    };
-}
-
-canvas.addEventListener("mousedown", () => drawing = true);
-canvas.addEventListener("mouseup", () => {
-    drawing = false;
-    ctx.beginPath();
-});
-canvas.addEventListener("mousemove", draw);
-
-canvas.addEventListener("touchstart", () => drawing = true);
-canvas.addEventListener("touchend", () => {
-    drawing = false;
-    ctx.beginPath();
-});
-canvas.addEventListener("touchmove", draw);
-
-function draw(e){
-    if(!drawing) return;
-
-    e.preventDefault();
-    const pos = getPos(e);
-
-    ctx.lineWidth = 2;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = "#000";
-
-    ctx.lineTo(pos.x, pos.y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(pos.x, pos.y);
-}
-
-function clearCanvas(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    document.getElementById("output").src = "";
-}
-
-function saveSignature(){
-    const dataURL = canvas.toDataURL("image/png");
-    document.getElementById("output").src = dataURL;
-}
-</script>
-
-</body>
-</html>
+        <!-- TWO COLUMN GRID: SIGNATURE & WEATHER -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            <script>
-function readNumber(n) {
-    const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+            <!-- Signature Tool -->
+            <section class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col items-center">
+                <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 mb-6 w-full flex items-center gap-3">
+                    <i class="fa-solid fa-pen-nib text-gold-accent"></i> Tạo Chữ Ký Online
+                </h2>
+                <div class="w-full overflow-hidden flex justify-center border-2 border-gray-300 rounded-lg bg-gray-50 mb-4">
+                    <canvas id="canvas" width="600" height="250" class="max-w-full bg-white cursor-crosshair"></canvas>
+                </div>
+                <div class="flex gap-4 mb-6">
+                    <button onclick="clearCanvas()" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold rounded transition shadow-sm">Xóa</button>
+                    <button onclick="saveSignature()" class="px-6 py-2 bg-gold-accent hover:bg-yellow-600 text-white font-semibold rounded transition shadow-sm">Lưu Ảnh</button>
+                </div>
+                <div class="w-full">
+                    <p class="text-sm text-gray-500 mb-2 font-medium">Kết quả ảnh chữ ký (Nhấn lưu để tạo):</p>
+                    <img id="output" class="min-h-[120px] w-full object-contain border border-dashed border-gray-300 rounded-lg bg-gray-50" alt="Chữ ký của bạn sẽ hiển thị ở đây">
+                </div>
+            </section>
 
-    if (n === 0) return "không";
-
-    if (n < 10) return units[n];
-
-    if (n < 20) {
-        return "mười" + (n === 15 ? " lăm" : (n % 10 ? " " + units[n % 10] : ""));
-    }
-
-    if (n < 100) {
-        let tens = Math.floor(n / 10);
-        let ones = n % 10;
-
-        let text = units[tens] + " mươi";
-
-        if (ones === 1) text += " mốt";
-        else if (ones === 4) text += " tư";
-        else if (ones === 5) text += " lăm";
-        else if (ones > 0) text += " " + units[ones];
-
-        return text;
-    }
-
-    if (n < 1000) {
-        let h = Math.floor(n / 100);
-        let r = n % 100;
-        return units[h] + " trăm" + (r ? " " + readNumber(r) : "");
-    }
-
-    if (n < 1000000) {
-        let k = Math.floor(n / 1000);
-        let r = n % 1000;
-        return readNumber(k) + " nghìn" + (r ? " " + readNumber(r) : "");
-    }
-
-    if (n < 1000000000) {
-        let m = Math.floor(n / 1000000);
-        let r = n % 1000000;
-        return readNumber(m) + " triệu" + (r ? " " + readNumber(r) : "");
-    }
-
-    return "số quá lớn";
-}
-
-function numberToMoney(n) {
-    if (n === 0) return "Không đồng";
-    return (readNumber(n).charAt(0).toUpperCase() + readNumber(n).slice(1)) + " đồng";
-}
-</script>
-        
+            <!-- Weather Widget -->
+            <section class="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
+                <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 mb-6 w-full flex items-center gap-3">
+                    <i class="fa-solid fa-cloud-sun text-gold-accent"></i> Thời Tiết Đà Nẵng
+                </h2>
+                <div id="weather-list" class="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                    <!-- Weather items populated by JS -->
+                    <div class="text-gray-500 text-center col-span-full py-10"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Đang tải dữ liệu thời tiết...</div>
+                </div>
+                <p id="updateTime" class="text-xs text-gray-400 text-right mt-4"></p>
+            </section>
         </div>
-        
-        <div class="iframe-container">
-            <iframe src="https://docs.google.com/document/d/e/2PACX-1vRCem-Vno9NUkejy1PmAj-OAuWMKpRE0QQp58QXf7h4PUaXYPThGNlM3mp50AtvqRrWORKgRI09Em11/pub?embedded=true"></iframe>
+
+        <!-- PDF VIEWERS SECTION -->
+        <section class="space-y-6">
+            <h2 class="text-navy-dark text-xl md:text-2xl font-bold border-b-2 border-gold-accent pb-3 flex items-center gap-3">
+                <i class="fa-solid fa-file-pdf text-gold-accent"></i> Tài Liệu Quy Hoạch
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- PDF Viewer 1 -->
+                <div class="flex flex-col md:flex-row h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="pdf-sidebar w-full md:w-64 bg-[#0b3a5d] text-white p-4 overflow-y-auto shrink-0">
+                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-list"></i> Mục lục phần 1</h3>
+                        <div class="space-y-1 text-sm">
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">I. Lý do lập quy hoạch</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">II. Điều kiện tự nhiên</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">III. Tầm nhìn</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">IV. Dân số</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">V. Cấu trúc đô thị</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VI. Khu chức năng</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VII. Giao thông</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VIII. Hạ tầng</a>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-gray-100 relative">
+                        <iframe class="w-full h-full absolute inset-0 border-none" src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview"></iframe>
+                    </div>
+                </div>
+
+                <!-- PDF Viewer 2 -->
+                <div class="flex flex-col md:flex-row h-[500px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="pdf-sidebar w-full md:w-64 bg-[#0b3a5d] text-white p-4 overflow-y-auto shrink-0">
+                        <h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-list"></i> Mục lục phần 2</h3>
+                        <div class="space-y-1 text-sm">
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">I. Lý do & quy hoạch</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">II. Tự nhiên</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">III. Tầm nhìn</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">IV. Dân số</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">V. Cấu trúc đô thị</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VI. Khu chức năng</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VII. Giao thông</a>
+                            <a href="#" class="block p-2 rounded hover:bg-[#155a86] transition">VIII. Hạ tầng</a>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-gray-100 relative">
+                        <iframe class="w-full h-full absolute inset-0 border-none" src="https://drive.google.com/file/d/104buQnOeAlGYgasv8UwfK2d4CMQHp6Uk/preview"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LUNAR CALENDAR SECTION -->
+        <section class="bg-slate-900 text-slate-50 rounded-2xl shadow-2xl p-6 md:p-10 mx-auto w-full">
+            <h2 class="text-white text-2xl md:text-3xl font-bold mb-8 text-center border-none flex justify-center gap-3">
+                📅 Lịch Âm Việt Nam
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Ngày Hôm Nay -->
+                <div class="lunar-card-bg p-6 rounded-xl border border-slate-700/50 shadow-inner">
+                    <h3 class="text-sky-400 font-bold text-lg mb-4 pb-2 border-b border-slate-700 text-center">Hôm Nay</h3>
+                    <div id="date" class="text-lg font-bold mb-2 text-white"></div>
+                    <div id="canchi" class="text-slate-400 text-sm mb-4"></div>
+                    <div id="gio" class="text-sm leading-relaxed mb-4 text-slate-200"></div>
+                    <div id="tot" class="mb-3 space-y-1"></div>
+                    <div id="xau" class="space-y-1"></div>
+                </div>
+
+                <!-- Ngày Tốt 60 Ngày -->
+                <div class="lunar-card-bg p-6 rounded-xl border border-slate-700/50 shadow-inner flex flex-col">
+                    <h3 class="text-sky-400 font-bold text-lg mb-4 pb-2 border-b border-slate-700 text-center">🔥 Ngày Tốt (60 ngày tới)</h3>
+                    <div id="list" class="overflow-y-auto pr-2 flex-1 max-h-[300px] space-y-2 pdf-sidebar text-sm">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Tuổi Làm Nhà -->
+                <div class="lunar-card-bg p-6 rounded-xl border border-slate-700/50 shadow-inner text-center">
+                    <h3 class="text-sky-400 font-bold text-lg mb-4 pb-2 border-b border-slate-700">🏠 Xem Tuổi Làm Nhà 2026</h3>
+                    <div class="space-y-4 mt-6">
+                        <input type="number" id="year-birth" placeholder="Nhập năm sinh (VD: 1993)" class="w-full p-3 rounded-lg border-none text-slate-900 bg-white font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+                        <button onclick="checkAgeHouse()" class="w-full p-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-bold transition shadow-lg">Xem Kết Quả</button>
+                    </div>
+                    <div id="age-house-result" class="text-left mt-6 bg-slate-800 p-4 rounded-lg text-sm border border-slate-700 hidden"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-dark text-white py-12 px-4 mt-auto">
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-4">
+            <h2 class="text-2xl font-bold tracking-widest text-gold-accent m-0 border-none">DANANGMOI.VN</h2>
+            <div class="w-16 h-0.5 bg-gold-accent"></div>
+            <div class="text-lg opacity-90 mt-2"><i class="fa-solid fa-envelope mr-2"></i>info@danangmoi.vn</div>
+            <div class="text-sm opacity-50 mt-4">© 2026 Đà Nẵng Mới. All rights reserved.</div>
         </div>
-    </div>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>PDF Viewer + Sidebar</title>
+    </footer>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    height: 100vh;
-}
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/gh/6tail/lunar-javascript/lunar.js"></script>
+    <script>
+        /* ================= NUMBER TO MONEY SCRIPT ================= */
+        function numberToMoneyVietnamese(n) {
+            if (n === 0) return "Không đồng";
 
-/* ===== SIDEBAR ===== */
-.sidebar {
-    width: 280px;
-    background: #0b3a5d;
-    color: white;
-    padding: 15px;
-    overflow-y: auto;   /* 👈 thanh trượt bên */
-}
+            const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
 
-.sidebar h3 {
-    margin-top: 0;
-    font-size: 16px;
-}
+            function read3Digits(num) {
+                let hundred = Math.floor(num / 100);
+                let ten = Math.floor((num % 100) / 10);
+                let one = num % 10;
 
-.sidebar a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 5px;
-}
+                let result = "";
 
-.sidebar a:hover {
-    background: #155a86;
-}
+                if (hundred > 0) {
+                    result += units[hundred] + " trăm";
+                    if (ten === 0 && one > 0) result += " lẻ";
+                }
 
-/* ===== PDF AREA ===== */
-.content {
-    flex: 1;
-    background: #f5f7fb;
-    padding: 10px;
-}
+                if (ten > 1) {
+                    result += (result ? " " : "") + units[ten] + " mươi";
+                    if (one === 1) result += " mốt";
+                    else if (one === 4) result += " tư";
+                    else if (one === 5) result += " lăm";
+                    else if (one > 0) result += " " + units[one];
+                } 
+                else if (ten === 1) {
+                    result += (result ? " " : "") + "mười";
+                    if (one === 5) result += " lăm";
+                    else if (one > 0) result += " " + units[one];
+                } 
+                else if (ten === 0 && one > 0 && hundred === 0) {
+                    result += units[one];
+                } 
+                else if (ten === 0 && one > 0 && hundred > 0) {
+                    result += " " + units[one];
+                }
 
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-</style>
-</head>
+                return result.trim();
+            }
 
-<body>
+            function splitNumber(num) {
+                let parts = [];
+                while (num > 0) {
+                    parts.unshift(num % 1000);
+                    num = Math.floor(num / 1000);
+                }
+                return parts;
+            }
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h3>📑 Mục lục</h3>
-    <a href="#">I. Lý do lập quy hoạch</a>
-    <a href="#">II. Điều kiện tự nhiên</a>
-    <a href="#">III. Tầm nhìn</a>
-    <a href="#">IV. Dân số</a>
-    <a href="#">V. Cấu trúc đô thị</a>
-    <a href="#">VI. Khu chức năng</a>
-    <a href="#">VII. Giao thông</a>
-    <a href="#">VIII. Hạ tầng</a>
-</div>
+            function readNumber(num) {
+                let parts = splitNumber(num);
+                let scales = ["", "nghìn", "triệu", "tỷ"];
+                let result = [];
 
-<!-- PDF -->
-<div class="content">
-    <iframe 
-        src="https://drive.google.com/file/d/114lauN-KOT2Yh-Nv5SfWmO4_kiK_k_Az/preview">
-    </iframe>
-    <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>PDF Viewer</title>
+                for (let i = 0; i < parts.length; i++) {
+                    if (parts[i] !== 0) {
+                        let text = read3Digits(parts[i]);
+                        if (scales[parts.length - 1 - i]) {
+                            text += " " + scales[parts.length - 1 - i];
+                        }
+                        result.push(text);
+                    }
+                }
 
-<style>
-body{
-    margin:0;
-    font-family: Arial;
-    display:flex;
-    height:100vh;
-}
+                return result.join(" ").replace(/\s+/g, " ").trim();
+            }
 
-/* ===== SIDEBAR ===== */
-.sidebar{
-    width:260px;
-    background:#0b3a5d;
-    color:#fff;
-    overflow-y:auto; /* 👈 thanh trượt bên */
-    padding:15px;
-}
-
-.sidebar h3{
-    margin-top:0;
-}
-
-.sidebar a{
-    display:block;
-    color:white;
-    padding:8px;
-    text-decoration:none;
-    border-radius:6px;
-}
-
-.sidebar a:hover{
-    background:#155a86;
-}
-
-/* ===== CONTENT ===== */
-.content{
-    flex:1;
-    background:#f5f7fb;
-}
-
-iframe{
-    width:100%;
-    height:100%;
-    border:none;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="sidebar">
-    <h3>📑 Mục lục</h3>
-    <a href="#">I. Lý do & quy hoạch</a>
-    <a href="#">II. Tự nhiên</a>
-    <a href="#">III. Tầm nhìn</a>
-    <a href="#">IV. Dân số</a>
-    <a href="#">V. Cấu trúc đô thị</a>
-    <a href="#">VI. Khu chức năng</a>
-    <a href="#">VII. Giao thông</a>
-    <a href="#">VIII. Hạ tầng</a>
-</div>
-
-<div class="content">
-    <iframe
-        src="https://drive.google.com/file/d/104buQnOeAlGYgasv8UwfK2d4CMQHp6Uk/preview">
-    </iframe>
-</div>
-
-</body>
-</html>
-</div>
-
-</body>
-</html>
-
-<div class="lunar-container">
-    <h2>📅 Lịch Âm Việt Nam</h2>
-
-    <div class="lunar-card">
-        <div id="date" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 5px;"></div>
-        <div id="canchi" style="color: #94a3b8; margin-bottom: 10px;"></div>
-        <div id="gio" style="margin-bottom: 15px; font-size: 0.95rem; line-height: 1.6;"></div>
-        <div id="tot" style="margin-bottom: 8px;"></div>
-        <div id="xau"></div>
-    </div>
-
-    <div class="lunar-card">
-        <h3>🔥 Ngày tốt 60 ngày tới</h3>
-        <div id="list" style="max-height: 400px; overflow-y: auto; padding-right: 10px;"></div>
-    </div>
-
-    <div class="lunar-card age-check-box">
-        <h3>🏠 Xem tuổi làm nhà 2026</h3>
-        <input type="number" id="year-birth" placeholder="Nhập năm sinh (VD: 1993)">
-        <br>
-        <button onclick="checkAgeHouse()">Xem kết quả</button>
-        <div class="age-result" id="age-house-result"></div>
-    </div>
-</div>
-
-<div class="bottom-contact">
-    <div class="footer-flex">
-        <div class="qr-container">
-       
-        </div>
-       
-            <div class="email-info">Email: info@danangmoi.vn</div>
-            <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.6;">Đà Nẵng Mới</div>
-        </div>
-    </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/gh/6tail/lunar-javascript/lunar.js"></script>
-
-<script>
-// ===== CHỈ GIỮ NỘI DUNG HỮU ÍCH =====
-const mapVN = {
-  "嫁娶":"Cưới hỏi",
-  "动土":"Động thổ",
-  "修造":"Xây dựng",
-  "开市":"Khai trương",
-  "入宅":"Nhập trạch",
-  "出行":"Xuất hành",
-  "交易":"Giao dịch",
-  "纳财":"Nhận tài lộc",
-  "安床":"Đặt giường",
-  "上梁":"Lợp mái"
-};
-
-const gioMapVN = {
-  "Tý": "23h - 01h",
-  "Sửu": "01h - 03h",
-  "Dần": "03h - 05h",
-  "Mão": "05h - 07h",
-  "Thìn": "07h - 09h",
-  "Tỵ": "09h - 11h",
-  "Ngọ": "11h - 13h",
-  "Mùi": "13h - 15h",
-  "Thân": "15h - 17h",
-  "Dậu": "17h - 19h",
-  "Tuất": "19h - 21h",
-  "Hợi": "21h - 23h"
-};
-
-// ===== LỌC CHỮ TRUNG =====
-function isChinese(t){
-  return /[\u4e00-\u9fa5]/.test(t);
-}
-
-// ===== DỊCH SẠCH =====
-function translate(arr){
-  return arr.map(x=>{
-    if(mapVN[x]) return mapVN[x];
-    if(isChinese(x)) return "";
-    return x;
-  }).filter(x => x !== "");
-}
-
-// ===== CAN CHI =====
-const canMap = {"甲":"Giáp","乙":"Ất","丙":"Bính","丁":"Đinh","戊":"Mậu","己":"Kỷ","庚":"Canh","辛":"Tân","壬":"Nhâm","癸":"Quý"};
-const chiMap = {"子":"Tý","丑":"Sửu","寅":"Dần","卯":"Mão","辰":"Thìn","巳":"Tỵ","午":"Ngọ","未":"Mùi","申":"Thân","酉":"Dậu","戌":"Tuất","亥":"Hợi"};
-
-function toVN(gz){
-  return (canMap[gz[0]]||"")+" "+(chiMap[gz[1]]||"");
-}
-
-// ===== GIỜ HOÀNG ĐẠO =====
-function getGioHD(chi){
-  const map = {
-    "Tý":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"],
-    "Sửu":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
-    "Dần":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"],
-    "Mão":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
-    "Thìn":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"],
-    "Tỵ":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"],
-    "Ngọ":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"],
-    "Mùi":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
-    "Thân":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"],
-    "Dậu":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
-    "Tuất":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"],
-    "Hợi":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"]
-  };
-  return map[chi] || [];
-}
-
-// ===== HIỂN THỊ NGÀY HIỆN TẠI =====
-function renderToday(){
-  let now = new Date();
-  let solar = Solar.fromDate(now);
-  let lunar = solar.getLunar();
-
-  const dateEl = document.getElementById("date");
-  if(dateEl) dateEl.innerHTML = `📆 ${now.toLocaleDateString("vi-VN")} | 🌙 ${lunar.getDay()}/${lunar.getMonth()}/${lunar.getYear()}`;
-
-  let canchi = toVN(lunar.getDayInGanZhi());
-  const canchiEl = document.getElementById("canchi");
-  if(canchiEl) canchiEl.innerHTML = "🧭 Ngày " + canchi;
-
-  let chi = canchi.split(" ")[1];
-  const gioEl = document.getElementById("gio");
-  if(gioEl) {
-    let listGio = getGioHD(chi).map(g => `${g} (${gioMapVN[g]})`);
-    gioEl.innerHTML = "⏰ <b>Giờ hoàng đạo:</b><br>" + listGio.join(", ");
-  }
-
-  let good = translate(lunar.getDayYi());
-  let bad  = translate(lunar.getDayJi());
-
-  const totEl = document.getElementById("tot");
-  if(totEl) totEl.innerHTML = "✅ Nên: " + good.map(x=>`<span class="tag">${x}</span>`).join("");
-
-  const xauEl = document.getElementById("xau");
-  if(xauEl) xauEl.innerHTML = "❌ Tránh: " + bad.map(x=>`<span class="tag">${x}</span>`).join("");
-}
-
-// ===== TRỰC =====
-const trucList = ["Kiến","Trừ","Mãn","Bình","Định","Chấp","Phá","Nguy","Thành","Thu","Khai","Bế"];
-const goodTruc = ["Thành","Khai","Mãn","Định"];
-
-// ===== NGÀY TỐT =====
-function isGoodDay(lunar, date){
-  let truc = trucList[date.getDate()%12];
-  let good = translate(lunar.getDayYi());
-  return good.length >= 2 && goodTruc.includes(truc);
-}
-
-// ===== DANH SÁCH 60 NGÀY =====
-function renderList(){
-  let html = "";
-  let today = new Date();
-
-  for(let i=0;i<60;i++){
-    let d = new Date();
-    d.setDate(today.getDate()+i);
-    let solar = Solar.fromDate(d);
-    let lunar = solar.getLunar();
-
-    if(isGoodDay(lunar,d)){
-      let good = translate(lunar.getDayYi()).slice(0,3);
-      html += `
-        <div style="border-bottom:1px solid #334155;padding:8px">
-          <b>${d.toLocaleDateString("vi-VN")}</b>
-          🌙 ${lunar.getDay()}/${lunar.getMonth()}
-          <div class="good">${good.join(", ")}</div>
-        </div>
-      `;
-    }
-  }
-  const listEl = document.getElementById("list");
-  if(listEl) listEl.innerHTML = html;
-}
-
-// ===== XEM TUỔI LÀM NHÀ =====
-function checkAgeHouse() {
-    let year = document.getElementById("year-birth").value;
-    if(!year) return;
-    let age = 2026 - year + 1;
-    let kimLau = age % 9;
-    let kimLauBad = [1,3,6,8].includes(kimLau);
-    let hoangOcBad = [3,5,6].includes(age % 6);
-
-    let result = `<p><b>Tuổi âm:</b> ${age}</p>`;
-
-    if (kimLauBad) result += "<p class='bad'>❌ Phạm Kim Lâu</p>";
-    else result += "<p class='good'>✔ Không phạm Kim Lâu</p>";
-
-    if (hoangOcBad) result += "<p class='bad'>❌ Phạm Hoang Ốc</p>";
-    else result += "<p class='good'>✔ Không phạm Hoang Ốc</p>";
-
-    if (!kimLauBad && !hoangOcBad) {
-        result += "<h3 class='good'>✅ Có thể xây nhà năm 2026</h3>";
-    } else {
-        result += "<h3 class='bad'>⚠️ Nên mượn tuổi làm nhà</h3>";
-        result += "<p><b>👉 Gợi ý tuổi đẹp để mượn:</b></p><ul>" +
-                  "<li>1960 - Canh Tý</li><li>1969 - Kỷ Dậu</li>" +
-                  "<li>1984 - Giáp Tý</li><li>1993 - Quý Dậu</li>" +
-                  "<li>1996 - Bính Tý</li></ul>";
-    }
-    const resBox = document.getElementById("age-house-result");
-    if(resBox) resBox.innerHTML = result;
-}
-
-
-
-
-
-function loadWeather() {
-    const apiKey = "87b4d2fbdcbc6be1ea537d774a3375d8";
-    const city = "Da Nang";
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=vi`)
-    .then(res => res.json()).then(data => {
-        const container = document.getElementById("weather-list");
-        if(!container) return;
-        container.innerHTML = "";
-        const daily = data.list.filter(item => item.dt_txt.includes("12:00:00"));
-        daily.slice(0, 5).forEach(day => {
-            const date = new Date(day.dt_txt).toLocaleDateString("vi-VN");
-            const temp = day.main.temp.toFixed(1);
-            const desc = day.weather[0].description;
-            const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
-            container.innerHTML += `<div class="weather-card"><h4>${date}</h4><img src="${icon}" alt="${desc}"><p><b>${temp}°C</b></p><p class="weather-small">${desc.charAt(0).toUpperCase() + desc.slice(1)}</p></div>`;
-        });
-        const updateEl = document.getElementById("updateTime");
-        if(updateEl) updateEl.innerText = "Cập nhật lúc: " + new Date().toLocaleTimeString("vi-VN");
-    }).catch(err => console.error("Lỗi thời tiết:", err));
-}
-
-window.onload = function() {
-    calculatePrice();
-    loadWeather();
-    renderToday();
-    renderList();
-    setInterval(loadWeather, 30 * 60 * 1000);
-    setInterval(renderToday, 1800000);
-
-    document.getElementById('lot-area').addEventListener('blur', function() {
-        if(parseFloat(this.value) < 25 || !this.value) {
-            this.value = 25;
-            calculatePrice();
+            let text = readNumber(n);
+            return text.charAt(0).toUpperCase() + text.slice(1) + " đồng";
         }
-    });
-};
-</script>
+
+        /* ================= SIGNATURE CANVAS SCRIPT ================= */
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let drawing = false;
+
+        // Resize logic to ensure canvas acts responsively
+        function resizeCanvas() {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            const parentWidth = canvas.parentElement.clientWidth;
+            // Set display size
+            canvas.style.width = parentWidth + "px";
+            canvas.style.height = "250px";
+            // Set actual size in memory (scaled to account for extra pixel density)
+            canvas.width = parentWidth * ratio;
+            canvas.height = 250 * ratio;
+            // Normalize coordinate system to use css pixels
+            ctx.scale(ratio, ratio);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+
+        function getPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            let clientX = e.clientX;
+            let clientY = e.clientY;
+            
+            if(e.touches && e.touches.length > 0) {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            }
+            
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        canvas.addEventListener("mousedown", (e) => { drawing = true; draw(e); });
+        canvas.addEventListener("mouseup", () => { drawing = false; ctx.beginPath(); });
+        canvas.addEventListener("mouseleave", () => { drawing = false; ctx.beginPath(); });
+        canvas.addEventListener("mousemove", draw);
+
+        canvas.addEventListener("touchstart", (e) => { e.preventDefault(); drawing = true; draw(e); }, {passive: false});
+        canvas.addEventListener("touchend", () => { drawing = false; ctx.beginPath(); });
+        canvas.addEventListener("touchcancel", () => { drawing = false; ctx.beginPath(); });
+        canvas.addEventListener("touchmove", draw, {passive: false});
+
+        function draw(e) {
+            if (!drawing) return;
+            e.preventDefault();
+            const pos = getPos(e);
+
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
+            ctx.strokeStyle = "#0f172a";
+
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+        }
+
+        function clearCanvas() {
+            // Because we scaled context, clear using canvas physical dimensions divided by scale, 
+            // but simplest is resetting transform temporarily
+            ctx.save();
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.restore();
+            document.getElementById("output").src = "";
+        }
+
+        function saveSignature() {
+            const dataURL = canvas.toDataURL("image/png");
+            document.getElementById("output").src = dataURL;
+        }
+
+        /* ================= LUNAR CALENDAR SCRIPT ================= */
+        const mapVN = {
+            "嫁娶":"Cưới hỏi", "动土":"Động thổ", "修造":"Xây dựng",
+            "开市":"Khai trương", "入宅":"Nhập trạch", "出行":"Xuất hành",
+            "交易":"Giao dịch", "纳财":"Nhận tài lộc", "安床":"Đặt giường", "上梁":"Lợp mái"
+        };
+        const gioMapVN = {
+            "Tý": "23h-01h", "Sửu": "01h-03h", "Dần": "03h-05h", "Mão": "05h-07h",
+            "Thìn": "07h-09h", "Tỵ": "09h-11h", "Ngọ": "11h-13h", "Mùi": "13h-15h",
+            "Thân": "15h-17h", "Dậu": "17h-19h", "Tuất": "19h-21h", "Hợi": "21h-23h"
+        };
+        function isChinese(t) { return /[\u4e00-\u9fa5]/.test(t); }
+        function translate(arr) {
+            return arr.map(x => {
+                if (mapVN[x]) return mapVN[x];
+                if (isChinese(x)) return "";
+                return x;
+            }).filter(x => x !== "");
+        }
+        const canMap = {"甲":"Giáp","乙":"Ất","丙":"Bính","丁":"Đinh","戊":"Mậu","己":"Kỷ","庚":"Canh","辛":"Tân","壬":"Nhâm","癸":"Quý"};
+        const chiMap = {"子":"Tý","丑":"Sửu","寅":"Dần","卯":"Mão","辰":"Thìn","巳":"Tỵ","午":"Ngọ","未":"Mùi","申":"Thân","酉":"Dậu","戌":"Tuất","亥":"Hợi"};
+        function toVN(gz) { return (canMap[gz[0]]||"")+" "+(chiMap[gz[1]]||""); }
+        function getGioHD(chi) {
+            const map = {
+                "Tý":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"], "Sửu":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
+                "Dần":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"], "Mão":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
+                "Thìn":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"], "Tỵ":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"],
+                "Ngọ":["Tý","Sửu","Mão","Ngọ","Thân","Dậu"], "Mùi":["Dần","Mão","Tỵ","Thân","Tuất","Hợi"],
+                "Thân":["Tý","Sửu","Thìn","Tỵ","Mùi","Tuất"], "Dậu":["Tý","Dần","Mão","Ngọ","Mùi","Dậu"],
+                "Tuất":["Dần","Thìn","Tỵ","Thân","Dậu","Hợi"], "Hợi":["Sửu","Thìn","Ngọ","Mùi","Tuất","Hợi"]
+            };
+            return map[chi] || [];
+        }
+
+        function renderToday() {
+            if(typeof Solar === 'undefined') return; // Prevents crash if lunar.js is blocked
+            let now = new Date();
+            let solar = Solar.fromDate(now);
+            let lunar = solar.getLunar();
+
+            document.getElementById("date").innerHTML = `📆 ${now.toLocaleDateString("vi-VN")} <span class="mx-2 text-slate-500">|</span> 🌙 ${lunar.getDay()}/${lunar.getMonth()}/${lunar.getYear()}`;
+            
+            let canchi = toVN(lunar.getDayInGanZhi());
+            document.getElementById("canchi").innerHTML = "🧭 Ngày " + canchi;
+
+            let chi = canchi.split(" ")[1];
+            let listGio = getGioHD(chi).map(g => `<span class="inline-block bg-slate-800 px-2 py-1 rounded text-xs m-1">${g} (${gioMapVN[g]})</span>`);
+            document.getElementById("gio").innerHTML = "<div class='text-sky-300 font-semibold mb-1'><i class='fa-regular fa-clock'></i> Giờ hoàng đạo:</div>" + listGio.join("");
+
+            let good = translate(lunar.getDayYi());
+            let bad = translate(lunar.getDayJi());
+
+            document.getElementById("tot").innerHTML = "<span class='text-emerald-400 font-bold'>✅ Nên:</span> " + (good.length ? good.map(x=>`<span class="lunar-tag">${x}</span>`).join("") : "<span class='text-slate-400 text-sm'>Không có</span>");
+            document.getElementById("xau").innerHTML = "<span class='text-rose-400 font-bold'>❌ Tránh:</span> " + (bad.length ? bad.map(x=>`<span class="lunar-tag bg-rose-900/30 text-rose-200">${x}</span>`).join("") : "<span class='text-slate-400 text-sm'>Không có</span>");
+        }
+
+        const trucList = ["Kiến","Trừ","Mãn","Bình","Định","Chấp","Phá","Nguy","Thành","Thu","Khai","Bế"];
+        const goodTruc = ["Thành","Khai","Mãn","Định"];
+        function isGoodDay(lunar, date) {
+            let truc = trucList[date.getDate()%12];
+            let good = translate(lunar.getDayYi());
+            return good.length >= 2 && goodTruc.includes(truc);
+        }
+
+        function renderList() {
+            if(typeof Solar === 'undefined') return;
+            let html = "";
+            let today = new Date();
+
+            for(let i=0; i<60; i++) {
+                let d = new Date();
+                d.setDate(today.getDate() + i);
+                let solar = Solar.fromDate(d);
+                let lunar = solar.getLunar();
+
+                if(isGoodDay(lunar, d)) {
+                    let good = translate(lunar.getDayYi()).slice(0, 3);
+                    html += `
+                        <div class="border-b border-slate-700/50 py-3 flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-sky-300">${d.toLocaleDateString("vi-VN").slice(0,5)}</span>
+                                <span class="text-xs text-slate-400 ml-2">Âm: ${lunar.getDay()}/${lunar.getMonth()}</span>
+                            </div>
+                            <div class="text-emerald-400 text-xs text-right truncate max-w-[50%]">${good.join(", ")}</div>
+                        </div>
+                    `;
+                }
+            }
+            document.getElementById("list").innerHTML = html || "<div class='text-slate-400 p-4 text-center'>Đang tính toán ngày...</div>";
+        }
+
+        function checkAgeHouse() {
+            let year = document.getElementById("year-birth").value;
+            const resBox = document.getElementById("age-house-result");
+            
+            if(!year) {
+                resBox.innerHTML = "<span class='text-rose-400'>Vui lòng nhập năm sinh.</span>";
+                resBox.style.display = 'block';
+                return;
+            }
+            
+            let age = 2026 - year + 1;
+            let kimLau = age % 9;
+            let kimLauBad = [1,3,6,8].includes(kimLau);
+            let hoangOcBad = [3,5,6].includes(age % 6);
+
+            let result = `<p class="mb-2 text-lg"><span class="text-slate-400">Tuổi âm:</span> <b class="text-white">${age} tuổi</b></p>`;
+
+            if (kimLauBad) result += "<p class='text-rose-400 py-1'><i class='fa-solid fa-xmark mr-2'></i> Phạm Kim Lâu</p>";
+            else result += "<p class='text-emerald-400 py-1'><i class='fa-solid fa-check mr-2'></i> Không phạm Kim Lâu</p>";
+
+            if (hoangOcBad) result += "<p class='text-rose-400 py-1'><i class='fa-solid fa-xmark mr-2'></i> Phạm Hoang Ốc</p>";
+            else result += "<p class='text-emerald-400 py-1'><i class='fa-solid fa-check mr-2'></i> Không phạm Hoang Ốc</p>";
+
+            result += `<hr class="border-slate-600 my-3">`;
+
+            if (!kimLauBad && !hoangOcBad) {
+                result += "<h3 class='text-emerald-400 font-bold text-lg mt-2 text-center'>✅ Có thể tự đứng tên xây nhà năm 2026</h3>";
+            } else {
+                result += "<h3 class='text-rose-400 font-bold text-lg mt-2 mb-3 text-center'>⚠️ Năm nay hạn, nên mượn tuổi làm nhà</h3>";
+                result += "<p class='text-sky-300 font-medium mb-2'>👉 Gợi ý tuổi đẹp (không phạm):</p><ul class='grid grid-cols-2 gap-2 text-slate-300'>" +
+                          "<li class='bg-slate-700 px-2 py-1 rounded text-center'>1960 (Canh Tý)</li><li class='bg-slate-700 px-2 py-1 rounded text-center'>1969 (Kỷ Dậu)</li>" +
+                          "<li class='bg-slate-700 px-2 py-1 rounded text-center'>1984 (Giáp Tý)</li><li class='bg-slate-700 px-2 py-1 rounded text-center'>1993 (Quý Dậu)</li>" +
+                          "<li class='bg-slate-700 px-2 py-1 rounded text-center col-span-2'>1996 (Bính Tý)</li></ul>";
+            }
+            
+            resBox.innerHTML = result;
+            resBox.style.display = 'block';
+        }
+
+        /* ================= WEATHER SCRIPT ================= */
+        function loadWeather() {
+            const apiKey = "87b4d2fbdcbc6be1ea537d774a3375d8";
+            const city = "Da Nang";
+            fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric&lang=vi`)
+            .then(res => res.json()).then(data => {
+                const container = document.getElementById("weather-list");
+                if(!container) return;
+                container.innerHTML = "";
+                // Filter forecast to get midday readings
+                const daily = data.list.filter(item => item.dt_txt.includes("12:00:00") || item.dt_txt.includes("09:00:00"));
+                // Remove duplicates by date
+                const uniqueDays = [];
+                const seenDates = new Set();
+                for(let item of daily) {
+                    const dateStr = item.dt_txt.split(' ')[0];
+                    if(!seenDates.has(dateStr)) {
+                        seenDates.add(dateStr);
+                        uniqueDays.push(item);
+                        if(uniqueDays.length === 6) break;
+                    }
+                }
+
+                uniqueDays.forEach(day => {
+                    const d = new Date(day.dt_txt);
+                    const dayName = d.toLocaleDateString("vi-VN", { weekday: 'short' });
+                    const date = d.toLocaleDateString("vi-VN").slice(0,5);
+                    const temp = day.main.temp.toFixed(1);
+                    const desc = day.weather[0].description;
+                    const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}.png`;
+                    
+                    container.innerHTML += `
+                        <div class="bg-[#F8F6F2] p-3 rounded-lg flex flex-col items-center justify-center text-center shadow-sm border border-gray-100 transition hover:shadow-md">
+                            <span class="text-navy-dark font-bold text-sm mb-1">${dayName}, ${date}</span>
+                            <img src="${icon}" alt="${desc}" class="w-12 h-12 drop-shadow-sm -my-1">
+                            <span class="text-gold-accent font-bold text-lg">${temp}°C</span>
+                            <span class="text-xs text-gray-500 capitalize mt-1 leading-tight">${desc}</span>
+                        </div>
+                    `;
+                });
+                document.getElementById("updateTime").innerText = "Cập nhật lúc: " + new Date().toLocaleTimeString("vi-VN");
+            }).catch(err => {
+                const container = document.getElementById("weather-list");
+                if(container) container.innerHTML = `<div class='col-span-full text-center text-red-500 py-4'>Lỗi kết nối thời tiết. Vui lòng thử lại sau.</div>`;
+            });
+        }
+
+        /* ================= INITIALIZATION ================= */
+        window.onload = function() {
+            // Setup canvas size
+            resizeCanvas();
+
+            // Run features
+            loadWeather();
+            
+            // Wait slightly for lunar JS to parse if network is slow
+            setTimeout(() => {
+                renderToday();
+                renderList();
+            }, 500);
+
+            // Intervals
+            setInterval(loadWeather, 30 * 60 * 1000); // Weather: 30 mins
+            setInterval(renderToday, 1800000);        // Date: 30 mins
+
+            // Safe fallback for undefined calculator elements in the original code
+            const lotArea = document.getElementById('lot-area');
+            if(lotArea) {
+                lotArea.addEventListener('blur', function() {
+                    if(parseFloat(this.value) < 25 || !this.value) {
+                        this.value = 25;
+                        if(typeof calculatePrice === "function") calculatePrice();
+                    }
+                });
+            }
+            if(typeof calculatePrice === "function") {
+                try { calculatePrice(); } catch(e) {}
+            }
+        };
+    </script>
 </body>
 </html>
