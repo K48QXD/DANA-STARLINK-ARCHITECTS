@@ -662,30 +662,6 @@
             setInterval(loadWeather, 30 * 60 * 1000); // Weather: 30 mins
             setInterval(renderToday, 1800000);        // Date: 30 mins
 
-            // Number to Money Converter Setup
-            const moneyInput = document.getElementById('money-input');
-            const moneyOutput = document.getElementById('money-output');
-            
-            if(moneyInput && moneyOutput) {
-                moneyInput.addEventListener('input', function(e) {
-                    // Xóa các ký tự không phải số
-                    let rawValue = this.value.replace(/\D/g, '');
-                    
-                    if (rawValue === '') {
-                        this.value = '';
-                        moneyOutput.innerText = 'Không đồng';
-                        return;
-                    }
-
-                    // Tự động thêm dấu phẩy ngăn cách hàng nghìn
-                    this.value = parseInt(rawValue, 10).toLocaleString('vi-VN');
-
-                    // Hiển thị kết quả bằng chữ
-                    let textResult = numberToMoneyVietnamese(parseInt(rawValue, 10));
-                    moneyOutput.innerText = textResult;
-                });
-            }
-        };
-    </script>
+        
 </body>
 </html>
